@@ -23,6 +23,7 @@ if piss > 1000 then
 end
 
 displayLink.clear()
+displayLink.update()
 displayLink.setCursorPos(1, 1)
 displayLink.write("Estrogen: "..estrogen..estrogenUnit)
 displayLink.setCursorPos(1, 2)
