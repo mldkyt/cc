@@ -9,8 +9,21 @@ local displayLink = peripheral.wrap("left")
 local estrogen = estrogenTank.tanks()[1].amount
 local piss = pissTank.tanks()[1].amount
 
+local estrogenUnit = "mB"
+local pissUnit = "mB"
+
+if estrogen > 1000 then
+    estrogen = estrogen / 1000
+    estrogenUnit = "B"
+end
+
+if piss > 1000 then
+    piss = piss / 1000
+    pissUnit = "B"
+end
+
 displayLink.setCursorPos(1, 1)
-displayLink.write("Estrogen: "..estrogen.." mB")
+displayLink.write("Estrogen: "..estrogen..estrogenUnit)
 displayLink.setCursorPos(1, 2)
-displayLink.write("Piss: "..piss.." mB")
+displayLink.write("Piss: "..piss..pissUnit)
 displayLink.update()
