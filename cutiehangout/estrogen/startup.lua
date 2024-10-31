@@ -22,6 +22,7 @@ if piss > 1000 then
     pissUnit = "B"
 end
 
+displayLink.clear()
 displayLink.setCursorPos(1, 1)
 displayLink.write("Estrogen: "..estrogen..estrogenUnit)
 displayLink.setCursorPos(1, 2)
