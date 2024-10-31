@@ -10,6 +10,6 @@ local estrogen = estrogenTank.tanks()[1].amount
 local piss = pissTank.tanks()[1].amount
 
 displayLink.setCursorPos(1, 1)
-displayLink.setText("Estrogen: "..estrogen.." mB")
+displayLink.write("Estrogen: "..estrogen.." mB")
 displayLink.setCursorPos(1, 2)
-displayLink.setText("Piss: "..piss.." mB")
+displayLink.write("Piss: "..piss.." mB")
