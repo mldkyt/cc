@@ -7,7 +7,7 @@ local pissTank = peripheral.wrap("create:fluid_tank_1")
 local displayLink = peripheral.wrap("left")
 
 while true do
-    os.sleep(0.05)
+    os.sleep(0.1)
     local estrogen = estrogenTank.tanks()[1].amount
     local piss = pissTank.tanks()[1].amount
 
