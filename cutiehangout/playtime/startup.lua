@@ -75,20 +75,6 @@ local mon = peripheral.wrap("Create_DisplayLink_0")
 local x = 36
 local y = 14
 
-local str = ""
-for i = 1, x do
-    str = str .. "X"
-end
-
-for i = 1, y do
-    mon.setCursorPos(1, i)
-    mon.write(str)
-end
-
-mon.update()
-
-os.sleep(1)
-
 local onlinePlayers = 0
 local offlinePlayers = 0
 
