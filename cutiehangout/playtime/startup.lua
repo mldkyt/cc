@@ -71,11 +71,12 @@ function getIGT()
     return string.format("%02d", hour) .. ":" .. string.format("%02d", minute)
 end
 
-local mon = peripheral.wrap("monitor_0")
+local mon = peripheral.wrap("Create_DisplayLink_0")
 local x, y = mon.getSize()
 
 mon.setTextColor(colors.white)
 mon.clear()
+mon.blit()
 
 local onlinePlayers = 0
 local offlinePlayers = 0
@@ -117,6 +118,8 @@ mon.write(offlinePlayers .. " offline players")
 local str = "IGT " .. getIGT() .. " IRL ".. getRealTime()
 mon.setCursorPos(x - #str, y)
 mon.write(str)
+
+mon.blit()
 
 os.sleep(1)
 
