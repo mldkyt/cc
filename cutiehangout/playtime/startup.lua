@@ -72,7 +72,7 @@ function getIGT()
 end
 
 local mon = peripheral.wrap("Create_DisplayLink_0")
-local x = 50
+local x = 36
 local y = 14
 
 mon.clear()
