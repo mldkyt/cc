@@ -107,20 +107,24 @@ while true do
     event, p1, p2, p3, p4, p5 = os.pullEventRaw()
     if event == "peripheral_detach" then
         -- p1 - side, p2 - type
-        http.post(config.webhook, json.encode({
-            content = "Peripheral " .. p1 .. " was detached! <@" .. config.userId .. ">"
-        }), {
-            ["Content-Type"] = "application/json"
-        })
+        if config.webhook ~= nil and config.webhook != "" then
+            http.post(config.webhook, json.encode({
+                content = "Peripheral " .. p1 .. " was detached! <@" .. config.userId .. ">"
+            }), {
+                ["Content-Type"] = "application/json"
+            })
+        end
     end
 
     if event == "peripheral" then
         -- p1 - side, p2 - type
-        http.post(config.webhook, json.encode({
-            content = "Peripheral " .. p1 .. " was attached! <@" .. config.userId .. ">"
-        }), {
-            ["Content-Type"] = "application/json"
-        })
+        if config.webhook ~= nil and config.webhook != "" then
+            http.post(config.webhook, json.encode({
+                content = "Peripheral " .. p1 .. " was attached! <@" .. config.userId .. ">"
+            }), {
+                ["Content-Type"] = "application/json"
+            })
+        end
     end
 
     if event == "monitor_resize" then
