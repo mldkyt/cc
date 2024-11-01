@@ -76,7 +76,7 @@ local x = 36
 local y = 14
 
 mon.clear()
-mon.blit()
+mon.update()
 
 local onlinePlayers = 0
 local offlinePlayers = 0
