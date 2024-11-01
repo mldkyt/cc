@@ -98,8 +98,8 @@ for k, v in ipairs(a['modded']) do
     if not v['online'] then
         i = i + 1
         if i + 5 + onlinePlayers < y - 2 then
-            mon.setCursorPos(4, i + 5 + onlinePlayers)
-            mon.write('   '..truncateString(v['name'], 16).." - "..formatTime(v['playtime']))
+            mon.setCursorPos(2, i + 5 + onlinePlayers)
+            mon.write('   '..truncateString(v['name'], 10).." - "..formatTime(v['playtime']))
         end
         offlinePlayers = offlinePlayers + 1
         
@@ -109,9 +109,9 @@ end
 mon.setCursorPos(1, onlinePlayers + 6)
 mon.write("Offline Players - " .. offlinePlayers)
 
-mon.setCursorPos(30, 1)
+mon.setCursorPos(20, 1)
 mon.write(onlinePlayers .. " online players")
-mon.setCursorPos(30, 2)
+mon.setCursorPos(20, 2)
 mon.write(offlinePlayers .. " offline players")
 
 local str = "IGT " .. getIGT() .. " IRL ".. getRealTime()
