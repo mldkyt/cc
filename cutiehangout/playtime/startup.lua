@@ -75,7 +75,6 @@ local mon = peripheral.wrap("Create_DisplayLink_0")
 local x = 50
 local y = 14
 
-mon.setTextColor(colors.white)
 mon.clear()
 mon.blit()
 
