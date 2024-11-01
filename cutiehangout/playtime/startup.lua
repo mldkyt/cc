@@ -118,7 +118,7 @@ while true do
         end
     end
 
-    mon.setCursorPos(1, onlinePlayers + 6)
+    mon.setCursorPos(1, onlinePlayers + 4)
     mon.write("Offline Players - " .. offlinePlayers)
 
     mon.setCursorPos(18, 1)
