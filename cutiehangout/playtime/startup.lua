@@ -60,7 +60,7 @@ function getRealTime()
     local minute = hour % 1
     minute = minute * 60
 
-    return string.format("%.0f", hour) .. ":" .. string.format("%.0f", minute)
+    return string.format("%02d", hour) .. ":" .. string.format("%02d", minute)
 end
 
 function getIGT()
@@ -68,7 +68,7 @@ function getIGT()
     local minute = hour % 1
     minute = minute * 60
 
-    return string.format("%.0f", hour) .. ":" .. string.format("%.0f", minute)
+    return string.format("%02d", hour) .. ":" .. string.format("%02d", minute)
 end
 
 local mon = peripheral.wrap("monitor_0")
