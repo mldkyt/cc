@@ -80,7 +80,7 @@ for k, v in ipairs(a['modded']) do
     end
 end
 
-mon.setCursorPos(1, 1)
+mon.setCursorPos(1, 3)
 mon.write("Online Players - " .. onlinePlayers)
 
 local i = 1
