@@ -97,7 +97,7 @@ while true do
     for k, v in ipairs(a['modded']) do
         if v['online'] then
             i = i + 1
-            mon.setCursorPos(2, i + 3)
+            mon.setCursorPos(2, i + 2)
             mon.write('   ' .. truncateString(v['name'], 10) .. " - " .. formatTime(v['playtime']))
             onlinePlayers = onlinePlayers + 1
         end
@@ -110,8 +110,8 @@ while true do
     for k, v in ipairs(a['modded']) do
         if not v['online'] then
             i = i + 1
-            if i + 5 + onlinePlayers < y - 2 then
-                mon.setCursorPos(2, i + 5 + onlinePlayers)
+            if i + 3 + onlinePlayers < y - 1 then
+                mon.setCursorPos(2, i + 3 + onlinePlayers)
                 mon.write('   ' .. truncateString(v['name'], 10) .. " - " .. formatTime(v['playtime']))
             end
             offlinePlayers = offlinePlayers + 1
