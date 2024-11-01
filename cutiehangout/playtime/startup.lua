@@ -110,7 +110,7 @@ mon.write(onlinePlayers .. " online players")
 mon.setCursorPos(30, 2)
 mon.write(offlinePlayers .. " offline players")
 
-local str = "IGT" .. getIGT() .. " IRL".. getRealTime()
+local str = "IGT " .. getIGT() .. " IRL".. getRealTime()
 local x, y = mon.getSize()
 mon.setCursorPos(x - #str, y)
 mon.write(str)
