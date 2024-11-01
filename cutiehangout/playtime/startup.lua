@@ -121,6 +121,3 @@ mon.write(str)
 mon.update()
 
 os.sleep(1)
-
-shell.run("reload")
-os.reboot()
