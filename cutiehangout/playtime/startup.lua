@@ -70,9 +70,11 @@ mon.clear()
 local onlinePlayers = 0
 local offlinePlayers = 0
 
-for k, v in pairs(a['modded']) do
+local i = 1
+for k, v in ipairs(a['modded']) do
     if v['online'] then
-        mon.setCursorPos(4, k + 3)
+        i = i + 1
+        mon.setCursorPos(4, i + 3)
         mon.write('   '..truncateString(v['name'], 16).." - "..formatTime(v['playtime']))
         onlinePlayers = onlinePlayers + 1
     end
@@ -81,9 +83,11 @@ end
 mon.setCursorPos(1, 1)
 mon.write("Online Players - " .. onlinePlayers)
 
-for k, v in pairs(a['modded']) do
+local i = 1
+for k, v in ipairs(a['modded']) do
     if not v['online'] then
-        mon.setCursorPos(4, k + 5 + onlinePlayers)
+        i = i + 1
+        mon.setCursorPos(4, i + 5 + onlinePlayers)
         mon.write('   '..truncateString(v['name'], 16).." - "..formatTime(v['playtime']))
         offlinePlayers = offlinePlayers + 1
     end
