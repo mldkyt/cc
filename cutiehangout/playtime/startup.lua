@@ -70,9 +70,6 @@ mon.clear()
 local onlinePlayers = 0
 local offlinePlayers = 0
 
-mon.setCursorPos(1, 1)
-mon.write("Online Players")
-
 for k, v in pairs(a['modded']) do
     if v['online'] then
         mon.setCursorPos(4, k + 3)
@@ -81,8 +78,8 @@ for k, v in pairs(a['modded']) do
     end
 end
 
-mon.setCursorPos(1, onlinePlayers + 3)
-mon.write("Offline Players")
+mon.setCursorPos(1, 1)
+mon.write("Online Players - " .. onlinePlayers)
 
 for k, v in pairs(a['modded']) do
     if not v['online'] then
@@ -92,9 +89,12 @@ for k, v in pairs(a['modded']) do
     end
 end
 
-mon.setCursorPos(18, 1)
+mon.setCursorPos(1, onlinePlayers + 5)
+mon.write("Offline Players")
+
+mon.setCursorPos(30, 1)
 mon.write(onlinePlayers .. " online players")
-mon.setCursorPos(18, 2)
+mon.setCursorPos(30, 2)
 mon.write(offlinePlayers .. " offline players")
 
 local realTime = getRealTime()
