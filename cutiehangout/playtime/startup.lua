@@ -55,6 +55,14 @@ function truncateString(str, length)
     end
 end
 
+function getRealTime()
+    local hour = os.time("utc")
+    local minute = hour % 1
+    minute = minute * 60
+
+    return string.format("%.0f", hour) .. ":" .. string.format("%.0f", minute)
+end
+
 local mon = peripheral.wrap("monitor_0")
 
 local onlinePlayers = 0
@@ -86,3 +94,8 @@ mon.setCursorPos(18, 1)
 mon.write(onlinePlayers .. " online players")
 mon.setCursorPos(18, 2)
 mon.write(offlinePlayers .. " offline players")
+
+local realTime = getRealTime()
+local x, y = mon.getCursorPos()
+mon.setCursorPos(x - #realTime, y)
+mon.write(realTime)
