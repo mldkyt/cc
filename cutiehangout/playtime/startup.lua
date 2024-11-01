@@ -48,7 +48,7 @@ function truncateString(str, length)
         return str:sub(1, length).."..."
     else
         spaces = ''
-        for i = 1, #str do
+        for i = 1, length - #str do
             spaces = spaces..' '
         end
         return str .. spaces
