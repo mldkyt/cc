@@ -3,13 +3,16 @@
 function downloadFile(f, l)
     print(f .. ": downloading update..")
     -- Get string
-    local startupUpdate, errorMessage = http.get(l)
+    local startupUpdate, errorMessage = http.get(l, {
+        ["User-Agent"] = "CutieHangout/1.0"
+    })
     if startupUpdate == nil then
-        printError("Error while trying to download file " .. errorMessage)
+        print("Error while trying to download file " .. errorMessage)
+        return
     end
     local status, message = startupUpdate.getResponseCode()
     if status ~= 200 then
-        printError("Server responded with message " .. message)
+        print("Server responded with message " .. message)
         return
     end
 
@@ -25,4 +28,14 @@ function downloadFile(f, l)
     file.write(fileC)
     file.close()
     print(f .. ": done updating.")
+end
+
+downloadFile("startup", "https://git.mldchan.dev/mld/cc/-/raw/main/cutiehangout/playtime/startup.lua?ref_type=heads&inline=false")
+downloadFile("main", "https://git.mldchan.dev/mld/cc/-/raw/main/cutiehangout/playtime/main.lua?ref_type=heads&inline=false")
+downloadFile("json", "https://raw.githubusercontent.com/rxi/json.lua/master/json.lua")
+
+while true do
+    os.sleep(0.5)
+    shell.run("main")
+    print("Program crashed, restarting...")
 end
