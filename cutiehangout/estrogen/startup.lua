@@ -6,6 +6,9 @@ local pissTank = peripheral.wrap("create:fluid_tank_1")
 
 local displayLink = peripheral.wrap("left")
 
+displayLink.clear()
+displayLink.update()
+
 while true do
     os.sleep(0.1)
     local estrogen = estrogenTank.tanks()[1].amount
@@ -24,11 +27,9 @@ while true do
         pissUnit = "B"
     end
 
-    displayLink.clear()
-    displayLink.update()
     displayLink.setCursorPos(1, 1)
-    displayLink.write("Estrogen: "..estrogen..estrogenUnit)
+    displayLink.write("Estrogen: "..estrogen..estrogenUnit.."  ")
     displayLink.setCursorPos(1, 2)
-    displayLink.write("Piss: "..piss..pissUnit)
+    displayLink.write("Piss: "..piss..pissUnit.."  ")
     displayLink.update()
 end
