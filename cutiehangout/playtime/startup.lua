@@ -19,7 +19,7 @@ function formatTime(seconds)
     local formattedTime = ""
 
     if months > 0 then
-        formattedTime = formattedTime..months.."m "
+        formattedTime = formattedTime..months.."mo "
     end
 
     if weeks > 0 then
