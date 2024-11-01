@@ -93,8 +93,8 @@ for k, v in ipairs(a['modded']) do
     end
 end
 
-mon.setCursorPos(1, onlinePlayers + 5)
-mon.write("Offline Players")
+mon.setCursorPos(1, onlinePlayers + 6)
+mon.write("Offline Players - " .. offlinePlayers)
 
 mon.setCursorPos(30, 1)
 mon.write(onlinePlayers .. " online players")
