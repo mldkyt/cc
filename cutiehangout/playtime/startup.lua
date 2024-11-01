@@ -70,7 +70,7 @@ function getIGT()
 
     return string.format("%02d", hour) .. ":" .. string.format("%02d", minute)
 end
-
+local x, y = mon.getSize()
 local mon = peripheral.wrap("monitor_0")
 
 mon.setTextColor(colors.white)
@@ -99,6 +99,9 @@ for k, v in ipairs(a['modded']) do
         mon.setCursorPos(4, i + 5 + onlinePlayers)
         mon.write('   '..truncateString(v['name'], 16).." - "..formatTime(v['playtime']))
         offlinePlayers = offlinePlayers + 1
+        if i + 5 + onlinePlayers > y - 2 then
+            break
+        end
     end
 end
 
@@ -111,7 +114,6 @@ mon.setCursorPos(30, 2)
 mon.write(offlinePlayers .. " offline players")
 
 local str = "IGT " .. getIGT() .. " IRL ".. getRealTime()
-local x, y = mon.getSize()
 mon.setCursorPos(x - #str, y)
 mon.write(str)
 
