@@ -4,4 +4,39 @@ a = http.get("https://chb.mldchan.dev/api/get", {
     ["User-Agent"] = "CutieHangout/1.0"
 })
 
-print(a.readAll())
+function formatTime(seconds) then
+    local months = math.floor(seconds / 2629743) % 12
+    local weeks = math.floor(seconds / 604800) % 52
+    local days = math.floor(seconds / 86400) % 7
+    local hours = math.floor(seconds / 3600) % 24
+    local minutes = math.floor(seconds / 60) % 60
+    local seconds = math.floor(seconds % 60)
+
+    local formattedTime = ""
+
+    if months > 0 then
+        formattedTime = formattedTime..months.." months, "
+    end
+
+    if weeks > 0 then
+        formattedTime = formattedTime..weeks.." weeks, "
+    end
+
+    if days > 0 then
+        formattedTime = formattedTime..days.." days, "
+    end
+
+    if hours > 0 then
+        formattedTime = formattedTime..hours.." hours, "
+    end
+
+    if minutes > 0 then
+        formattedTime = formattedTime..minutes.." minutes, "
+    end
+
+    formattedTime = formattedTime..seconds.." seconds"
+
+    return formattedTime
+end
+
+
