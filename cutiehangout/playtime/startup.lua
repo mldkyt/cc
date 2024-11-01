@@ -43,6 +43,18 @@ function formatTime(seconds)
     return formattedTime
 end
 
+function truncateString(str, length)
+    if #str > length then
+        return str:sub(1, length).."..."
+    else
+        spaces = ''
+        for i = 1, #str do
+            spaces = spaces..' '
+        end
+        return str .. spaces
+    end
+end
+
 for k, v in pairs(a['modded']) do
     if v['online'] then
         print(v['name']..": "..formatTime(v['playtime']))
