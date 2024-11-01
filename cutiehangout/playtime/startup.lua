@@ -70,8 +70,8 @@ function getIGT()
 
     return string.format("%02d", hour) .. ":" .. string.format("%02d", minute)
 end
-local x, y = mon.getSize()
 local mon = peripheral.wrap("monitor_0")
+local x, y = mon.getSize()
 
 mon.setTextColor(colors.white)
 mon.clear()
