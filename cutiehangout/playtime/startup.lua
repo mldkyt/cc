@@ -96,6 +96,6 @@ mon.setCursorPos(18, 2)
 mon.write(offlinePlayers .. " offline players")
 
 local realTime = getRealTime()
-local x, y = mon.getCursorPos()
+local x, y = mon.getSize()
 mon.setCursorPos(x - #realTime, y)
 mon.write(realTime)
