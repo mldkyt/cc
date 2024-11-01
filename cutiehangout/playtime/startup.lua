@@ -45,7 +45,7 @@ end
 
 function truncateString(str, length)
     if #str > length then
-        return str:sub(1, length).."..."
+        return str:sub(1, length - 3).."..."
     else
         spaces = ''
         for i = 1, length - #str do
