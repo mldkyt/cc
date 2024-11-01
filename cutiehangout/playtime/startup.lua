@@ -45,7 +45,7 @@ end
 
 function truncateString(str, length)
     if #str > length then
-        return str:sub(1, length - 3).."..."
+        return str:sub(1, length)
     else
         spaces = ''
         for i = 1, length - #str do
@@ -84,8 +84,8 @@ local i = 1
 for k, v in ipairs(a['modded']) do
     if v['online'] then
         i = i + 1
-        mon.setCursorPos(4, i + 3)
-        mon.write('   '..truncateString(v['name'], 16).." - "..formatTime(v['playtime']))
+        mon.setCursorPos(2, i + 3)
+        mon.write('   '..truncateString(v['name'], 10).." - "..formatTime(v['playtime']))
         onlinePlayers = onlinePlayers + 1
     end
 end
@@ -109,9 +109,9 @@ end
 mon.setCursorPos(1, onlinePlayers + 6)
 mon.write("Offline Players - " .. offlinePlayers)
 
-mon.setCursorPos(20, 1)
+mon.setCursorPos(18, 1)
 mon.write(onlinePlayers .. " online players")
-mon.setCursorPos(20, 2)
+mon.setCursorPos(18, 2)
 mon.write(offlinePlayers .. " offline players")
 
 local str = "IGT " .. getIGT() .. " IRL ".. getRealTime()
