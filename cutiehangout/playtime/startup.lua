@@ -57,6 +57,6 @@ end
 
 for k, v in pairs(a['modded']) do
     if v['online'] then
-        print(v['name']..": "..formatTime(v['playtime']))
+        print(truncateString(v['name'], 20).." - "..formatTime(v['playtime']))
     end
 end
