@@ -75,6 +75,9 @@ local mon = peripheral.wrap("Create_DisplayLink_0")
 local x = 36
 local y = 14
 
+mon.clear()
+mon.update()
+
 local onlinePlayers = 0
 local offlinePlayers = 0
 
