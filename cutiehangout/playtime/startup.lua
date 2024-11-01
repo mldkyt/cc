@@ -72,7 +72,7 @@ function getIGT()
 end
 
 local mon = peripheral.wrap("Create_DisplayLink_0")
-local x, y = mon.getSize()
+local y, x = mon.getSize()
 
 mon.clear()
 mon.update()
