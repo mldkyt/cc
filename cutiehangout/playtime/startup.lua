@@ -99,3 +99,8 @@ local realTime = getRealTime()
 local x, y = mon.getSize()
 mon.setCursorPos(x - #realTime, y)
 mon.write(realTime)
+
+os.sleep(1)
+
+shell.run("reload")
+os.reboot()
