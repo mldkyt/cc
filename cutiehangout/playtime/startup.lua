@@ -96,12 +96,12 @@ local i = 1
 for k, v in ipairs(a['modded']) do
     if not v['online'] then
         i = i + 1
-        mon.setCursorPos(4, i + 5 + onlinePlayers)
-        mon.write('   '..truncateString(v['name'], 16).." - "..formatTime(v['playtime']))
-        offlinePlayers = offlinePlayers + 1
-        if i + 5 + onlinePlayers > y - 2 then
-            break
+        if i + 5 + onlinePlayers < y - 2 then
+            mon.setCursorPos(4, i + 5 + onlinePlayers)
+            mon.write('   '..truncateString(v['name'], 16).." - "..formatTime(v['playtime']))
         end
+        offlinePlayers = offlinePlayers + 1
+        
     end
 end
 
