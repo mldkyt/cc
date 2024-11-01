@@ -63,6 +63,14 @@ function getRealTime()
     return string.format("%.0f", hour) .. ":" .. string.format("%.0f", minute)
 end
 
+function getIGT()
+    local hour = os.time()
+    local minute = hour % 1
+    minute = minute * 60
+
+    return string.format("%.0f", hour) .. ":" .. string.format("%.0f", minute)
+end
+
 local mon = peripheral.wrap("monitor_0")
 
 mon.setTextColor(colors.white)
@@ -102,10 +110,10 @@ mon.write(onlinePlayers .. " online players")
 mon.setCursorPos(30, 2)
 mon.write(offlinePlayers .. " offline players")
 
-local realTime = getRealTime()
+local str = "IGT" .. getIGT() .. " IRL".. getRealTime()
 local x, y = mon.getSize()
-mon.setCursorPos(x - #realTime, y)
-mon.write(realTime)
+mon.setCursorPos(x - #str, y)
+mon.write(str)
 
 os.sleep(1)
 
