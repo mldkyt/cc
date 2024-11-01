@@ -1,8 +1,12 @@
 
+local json = require("json")
+
 a = http.get("https://chb.mldchan.dev/api/get", {
     ["Accept"] = "application/json",
     ["User-Agent"] = "CutieHangout/1.0"
 })
+
+a = json.decode(a.readAll())
 
 function formatTime(seconds) then
     local months = math.floor(seconds / 2629743) % 12
@@ -39,4 +43,8 @@ function formatTime(seconds) then
     return formattedTime
 end
 
-
+for k, v in pairs(a['modded']) do
+    if v['online'] then
+        print(k..": "..formatTime(v['playtime']))
+    end
+end
