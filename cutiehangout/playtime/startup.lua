@@ -65,6 +65,7 @@ end
 
 local mon = peripheral.wrap("monitor_0")
 
+mon.setTextColor(colors.white)
 mon.clear()
 
 local onlinePlayers = 0
