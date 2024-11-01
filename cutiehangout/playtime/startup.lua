@@ -19,26 +19,26 @@ function formatTime(seconds)
     local formattedTime = ""
 
     if months > 0 then
-        formattedTime = formattedTime..months.." months, "
+        formattedTime = formattedTime..months.."m "
     end
 
     if weeks > 0 then
-        formattedTime = formattedTime..weeks.." weeks, "
+        formattedTime = formattedTime..weeks.."w "
     end
 
     if days > 0 then
-        formattedTime = formattedTime..days.." days, "
+        formattedTime = formattedTime..days.."d "
     end
 
     if hours > 0 then
-        formattedTime = formattedTime..hours.." hours, "
+        formattedTime = formattedTime..hours.."h "
     end
 
     if minutes > 0 then
-        formattedTime = formattedTime..minutes.." minutes, "
+        formattedTime = formattedTime..minutes.."m "
     end
 
-    formattedTime = formattedTime..seconds.." seconds"
+    formattedTime = formattedTime..seconds.."s "
 
     return formattedTime
 end
