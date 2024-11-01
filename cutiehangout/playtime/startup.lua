@@ -8,7 +8,7 @@ a = http.get("https://chb.mldchan.dev/api/get", {
 
 a = json.decode(a.readAll())
 
-function formatTime(seconds) then
+function formatTime(seconds)
     local months = math.floor(seconds / 2629743) % 12
     local weeks = math.floor(seconds / 604800) % 52
     local days = math.floor(seconds / 86400) % 7
