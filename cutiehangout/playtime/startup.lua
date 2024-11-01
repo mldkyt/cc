@@ -65,6 +65,8 @@ end
 
 local mon = peripheral.wrap("monitor_0")
 
+mon.clear()
+
 local onlinePlayers = 0
 local offlinePlayers = 0
 
