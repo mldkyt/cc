@@ -55,8 +55,23 @@ function truncateString(str, length)
     end
 end
 
+local mon = peripheral.wrap("monitor_0")
+
+local onlinePlayers = 0
+local offlinePlayers = 0
+
 for k, v in pairs(a['modded']) do
     if v['online'] then
-        print('   '..truncateString(v['name'], 16).." - "..formatTime(v['playtime']))
+        mon.setCursorPos(4, k + 3)
+        mon.write('   '..truncateString(v['name'], 16).." - "..formatTime(v['playtime']))
+        onlinePlayers = onlinePlayers + 1
+    end
+end
+
+for k, v in pairs(a['modded']) do
+    if not v['online'] then
+        mon.setCursorPos(4, k + 5 + onlinePlayers)
+        mon.write('   '..truncateString(v['name'], 16).." - "..formatTime(v['playtime']))
+        offlinePlayers = offlinePlayers + 1
     end
 end
