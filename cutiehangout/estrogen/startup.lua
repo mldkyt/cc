@@ -28,8 +28,8 @@ while true do
     end
 
     displayLink.setCursorPos(1, 1)
-    displayLink.write("Estrogen: "..estrogen..estrogenUnit.."  ")
+    displayLink.write("Estrogen: "..estrogen..estrogenUnit.."   ")
     displayLink.setCursorPos(1, 2)
-    displayLink.write("Piss: "..piss..pissUnit.."  ")
+    displayLink.write("Piss: "..piss..pissUnit.."   ")
     displayLink.update()
 end
