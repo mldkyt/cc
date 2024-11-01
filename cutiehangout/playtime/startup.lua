@@ -119,7 +119,7 @@ local str = "IGT " .. getIGT() .. " IRL ".. getRealTime()
 mon.setCursorPos(x - #str, y)
 mon.write(str)
 
-mon.blit()
+mon.update()
 
 os.sleep(1)
 
