@@ -99,9 +99,21 @@ function drawDeviceInformation()
         mon.write("[Clear]")
 
         local perXCur, perYCur = peripheral.call(selectedDevice, "getCursorPos")
+        local perBlink = peripheral.call(selectedDevice, "getBlink")
 
         mon.setCursorPos(2, 7)
         mon.write("Cursor: X: [- " .. string.format("%02d", perXCur) ..  " +], Y: [- " .. string.format("%02d", perYCur) .. " +]")
+
+        mon.setCursorPos(2, 8)
+        mon.write("[")
+        if perBlink then
+            mon.setBackgroundColor(colors.green)
+        else
+            mon.setBackgroundColor(colors.red)
+        end
+        mon.write(" ")
+        mon.setBackgroundColor(colors.black)
+        mon.write("] Cursor Blink")
     elseif peripheral.getType(selectedDevice) == "computer" then
 
     else
@@ -169,6 +181,11 @@ while true do
                     local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
                     perY = perY + 1
                     peripheral.call(selectedDevice, "setCursorPos", perX, perY)
+                end
+
+                if p2 == 4 and p3 == 8 then
+                    local perBlink = not peripheral.call(selectedDevice, "getBlink")
+                    peripheral.call(selectedDevice, "setBlink", perBlink)
                 end
             elseif peripheral.getType(selectedDevice) == "computer" then
                 
