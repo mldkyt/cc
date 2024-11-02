@@ -120,8 +120,8 @@ while true do
 
             local methods = peripheral.getMethods(selectedDevice)
 
-            if p2 > 5 and p2 < 15 and p3 > 5 and p3 < #methods + 5 then
-                selectedMethod = methods[p3 - 5]
+            if p2 > 5 and p2 < 15 and p3 > 4 and p3 < #methods + 4 then
+                selectedMethod = methods[p3 - 4]
             end
         end
     end
