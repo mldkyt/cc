@@ -44,10 +44,21 @@ function drawListOfDevices()
     mon.write("TYPE")
 
     for k, v in ipairs(listOfDevices) do
+        local methods = peripheral.getMethods(v)
+        if methods.isOn ~= nil then
+            if methods.isOn() then
+                mon.setBackgroundColor(colors.green)
+            else
+                mon.setBackgroundColor(colors.red)
+            end
+        end
+
         mon.setCursorPos(2, k + 2)
         mon.write(v)
         mon.setCursorPos(30, k + 2)
         mon.write(peripheral.getType(v))
+
+        mon.setBackgroundColor(colors.black)
     end
 
     local x, y = mon.getSize()
