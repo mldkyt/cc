@@ -141,5 +141,5 @@ while true do
 
     mon.update()
 
-    os.sleep(1)
+    os.sleep(0.5)
 end
