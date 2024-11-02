@@ -72,7 +72,7 @@ function drawDeviceInformation()
     mon.setCursorPos(1, 4)
     mon.write("Methods: ")
     for k, v in ipairs(methods) do
-        mon.setCursorPos(2, methods[k] + 4)
+        mon.setCursorPos(2, k + 4)
         mon.write(" - " .. v .. "()")
     end
 end
