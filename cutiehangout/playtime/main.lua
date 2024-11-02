@@ -86,6 +86,7 @@ while true do
         mon.update()
         mon.setCursorPos(x / 2 - #"Refreshing..." / 2, y / 2 - 1)
         mon.write("Refreshing...")
+        mon.update()
 
         a = http.get("https://chb.mldchan.dev/api/get", {
             ["Accept"] = "application/json",
@@ -93,6 +94,9 @@ while true do
         })
         
         a = json.decode(a.readAll())
+
+        mon.clear()
+        mon.update()
     end
 
     local onlinePlayers = 0
