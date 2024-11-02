@@ -46,13 +46,15 @@ function drawListOfDevices()
     for k, v in ipairs(listOfDevices) do
         local onlineStatus = "none"
         local methods = peripheral.getMethods(v)
-        if "isOn" in methods then
-            if peripheral.call(v, "isOn") then
-                onlineStatus = "online"
-                mon.setBackgroundColor(colors.green)
-            else
-                onlineStatus = "offline"
-                mon.setBackgroundColor(colors.red)
+        for _, v in ipairs(methods) do
+            if v == "isOn" then
+                if peripheral.call(v, "isOn") then
+                    onlineStatus = "online"
+                    mon.setBackgroundColor(colors.green)
+                else
+                    onlineStatus = "offline"
+                    mon.setBackgroundColor(colors.red)
+                end
             end
         end
 
