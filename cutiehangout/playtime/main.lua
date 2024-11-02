@@ -82,6 +82,11 @@ while true do
     j = j + 1
     if j > 10 then
         j = 1
+        mon.clear()
+        mon.update()
+        mon.setCursorPos(x / 2 - #"Refreshing..." / 2, y / 2 - 1)
+        mon.write("Refreshing...")
+
         a = http.get("https://chb.mldchan.dev/api/get", {
             ["Accept"] = "application/json",
             ["User-Agent"] = "CutieHangout/1.0"
