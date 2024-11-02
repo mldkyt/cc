@@ -27,13 +27,13 @@ mon.write("List of devices on this network:")
 mon.setCursorPos(2, 2)
 mon.write("NAME")
 
-mon.setCursorPos(20, 2)
+mon.setCursorPos(30, 2)
 mon.write("TYPE")
 
 for k, v in ipairs(listOfDevices) do
     mon.setCursorPos(2, k + 2)
     mon.write(v)
-    mon.setCursorPos(20, k + 2)
+    mon.setCursorPos(30, k + 2)
     mon.write(peripheral.getType(v))
 end
 
