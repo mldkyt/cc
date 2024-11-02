@@ -37,3 +37,7 @@ for k, v in ipairs(listOfDevices) do
     mon.write(peripheral.getType(v))
 end
 
+msg = "IGT " .. getIGT() .. " IRL " .. getRealTime()
+mon.setCursorPos(mon.getSize()[1] - #msg, mon.getSize()[2])
+mon.write(msg)
+
