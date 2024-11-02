@@ -130,7 +130,7 @@ while true do
 
         if screen == "list" then
             local devices = getDevices()
-            if p2 > 2 and p2 < 30 and p3 > 2 and p3 < #devices + 2 then
+            if p2 > 2 and p2 < 30 and p3 > 2 and p3 < #devices + 1 then
                 selectedDevice = devices[p3 - 2]
                 screen = "device"
             end
@@ -140,17 +140,8 @@ while true do
             if p2 > 1 and p2 < 6 and p3 == 1 then
                 screen = "list"
             end
-        end
-    end
-    
-    if lastClock ~= os.time("utc") then
-        if screen == "list" then
-            drawListOfDevices()
-        end
-    
-        if screen == "device" then
-            drawDeviceInformation()
 
+            
             if peripheral.getType(selectedDevice) == "monitor" then
                 if p2 > 2 and p2 < 9 and p3 == 6 then
                     peripheral.call(selectedDevice, "clear")
@@ -182,6 +173,16 @@ while true do
             elseif peripheral.getType(selectedDevice) == "computer" then
                 
             end
+        end
+    end
+    
+    if lastClock ~= os.time("utc") then
+        if screen == "list" then
+            drawListOfDevices()
+        end
+    
+        if screen == "device" then
+            drawDeviceInformation()
         end
 
         lastClock = os.time("utc")
