@@ -1,6 +1,8 @@
 
 local mon = peripheral.wrap("monitor_1")
 
+local DEBUG = false
+
 local screen = "list"
 local selectedDevice = ""
 
@@ -82,21 +84,24 @@ function drawDeviceInformation()
     mon.setCursorPos(1, 3)
     mon.write(" Type: " .. peripheral.getType(selectedDevice))
 
-    mon.setCursorPos(2, 4)
-    local perX, perY = peripheral.getSize(selectedDevice)
-    local perSize = peripheral.getSize(selectedDevice)
-    mon.write("W: " .. perX .. ", H: " .. perY .. ", font size: " .. perSize)
-
-    local methods = peripheral.getMethods(selectedDevice)
-    mon.setCursorPos(1, 5)
-    mon.write(" Methods: ")
 
     if peripheral.getType(selectedDevice) == "monitor" then
+        mon.setCursorPos(2, 4)
+        local perX, perY = peripheral.call(selectedDevice, "getSize")
+        local perSize = peripheral.call(selectedDevice, "getFontSize")
+        mon.write("W: " .. perX .. ", H: " .. perY .. ", font size: " .. perSize)
+    
+        local methods = peripheral.getMethods(selectedDevice)
+        mon.setCursorPos(1, 5)
+        mon.write(" Methods: ")
+
         mon.setCursorPos(2, 6)
         mon.write("[Clear]")
 
-        mon.setCursorPos(12, 6)
-        mon.write("[]")
+        local perXCur, perYCur = peripheral.call(selectedDevice, "getCursorPos")
+
+        mon.setCursorPos(2, 7)
+        mon.write("Cursor: X: [- " .. string.format("%02d", perXCur)  " +], Y: [- " .. string.format("%02d", perYCur) .. " +]")
     elseif peripheral.getType(selectedDevice) == "computer" then
 
     else
@@ -114,6 +119,15 @@ while true do
     event, p1, p2, p3, p4, p5 = os.pullEvent()
 
     if event == "monitor_touch" then
+        if DEBUG then
+            mon.setCursorPos(p2, p3)
+            mon.write("X")
+            mon.setCursorPos(p2, p3 + 1)
+            mon.write("X="..p2)
+            mon.setCursorPos(p2, p3 + 2)
+            mon.write("Y="..p3)
+        end
+
         if screen == "list" then
             local devices = getDevices()
             if p2 > 2 and p2 < 30 and p3 > 2 and p3 < #devices + 2 then
@@ -140,6 +154,30 @@ while true do
             if peripheral.getType(selectedDevice) == "monitor" then
                 if p2 > 2 and p2 < 9 and p3 == 6 then
                     peripheral.call(selectedDevice, "clear")
+                end
+
+                if p2 == 16 and p3 == 7 then
+                    local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
+                    perX = perX - 1
+                    peripheral.call(selectedDevice, "setCursorPos", perX, perY)
+                end
+
+                if p2 == 20 and p3 == 7 then
+                    local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
+                    perX = perX + 1
+                    peripheral.call(selectedDevice, "setCursorPos", perX, perY)
+                end
+
+                if p2 == 28 and p3 == 7 then
+                    local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
+                    perY = perY - 1
+                    peripheral.call(selectedDevice, "setCursorPos", perX, perY)
+                end
+
+                if p2 == 32 and p3 == 7 then
+                    local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
+                    perY = perY + 1
+                    peripheral.call(selectedDevice, "setCursorPos", perX, perY)
                 end
             elseif peripheral.getType(selectedDevice) == "computer" then
                 
