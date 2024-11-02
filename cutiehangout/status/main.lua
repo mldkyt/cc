@@ -104,4 +104,5 @@ while true do
     if screen == "device" then
         drawDeviceInformation()
     end
+    os.sleep(0.05)
 end
