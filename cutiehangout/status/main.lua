@@ -3,7 +3,6 @@ local mon = peripheral.wrap("monitor_1")
 
 local screen = "list"
 local selectedDevice = ""
-local selectedMethod = ""
 
 function getRealTime()
     local hour = os.time("utc")
@@ -83,18 +82,28 @@ function drawDeviceInformation()
     mon.setCursorPos(1, 3)
     mon.write(" Type: " .. peripheral.getType(selectedDevice))
 
+    mon.setCursorPos(2, 4)
+    local perX, perY = peripheral.getSize(selectedDevice)
+    local perSize = peripheral.getSize(selectedDevice)
+    mon.write("W: " .. perX .. ", H: " .. perY .. ", font size: " .. perSize)
+
     local methods = peripheral.getMethods(selectedDevice)
-    mon.setCursorPos(1, 4)
+    mon.setCursorPos(1, 5)
     mon.write(" Methods: ")
-    for k, v in ipairs(methods) do
-        mon.setCursorPos(2, k + 4)
 
-        if v == selectedMethod then
-            mon.setBackgroundColor(colors.blue)
+    if peripheral.getType(selectedDevice) == "monitor" then
+        mon.setCursorPos(2, 6)
+        mon.write("[Clear]")
+
+        mon.setCursorPos(12, 6)
+        mon.write("[]")
+    elseif peripheral.getType(selectedDevice) == "computer" then
+
+    else
+        for k, v in ipairs(methods) do
+            mon.setCursorPos(2, k + 4)
+            mon.write("  - " .. v .. "()")
         end
-
-        mon.write("  - " .. v .. "()")
-        mon.setBackgroundColor(colors.black)
     end
 end
 
@@ -117,12 +126,6 @@ while true do
             if p2 > 1 and p2 < 6 and p3 == 1 then
                 screen = "list"
             end
-
-            local methods = peripheral.getMethods(selectedDevice)
-
-            if p2 > 5 and p2 < 15 and p3 > 4 and p3 < #methods + 4 then
-                selectedMethod = methods[p3 - 4]
-            end
         end
     end
     
@@ -133,6 +136,14 @@ while true do
     
         if screen == "device" then
             drawDeviceInformation()
+
+            if peripheral.getType(selectedDevice) == "monitor" then
+                if p2 > 2 and p2 < 9 and p3 == 6 then
+                    peripheral.call(selectedDevice, "clear")
+                end
+            elseif peripheral.getType(selectedDevice) == "computer" then
+                
+            end
         end
 
         lastClock = os.time("utc")
