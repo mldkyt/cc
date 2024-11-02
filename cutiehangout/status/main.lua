@@ -91,6 +91,8 @@ function drawDeviceInformation()
     end
 end
 
+local lastClock = os.time("utc")
+
 while true do
     os.queueEvent("drawListOfDevices")
     event, p1, p2, p3, p4, p5 = os.pullEvent()
@@ -111,12 +113,15 @@ while true do
         end
     end
     
-    if screen == "list" then
-        drawListOfDevices()
-    end
+    if lastClock ~= os.time("utc") then
+        if screen == "list" then
+            drawListOfDevices()
+        end
+    
+        if screen == "device" then
+            drawDeviceInformation()
+        end
 
-    if screen == "device" then
-        drawDeviceInformation()
+        lastClock = os.time("utc")
     end
-    os.sleep(0.05)
 end
