@@ -1,7 +1,7 @@
 
 local mon = peripheral.wrap("monitor_1")
 
-local DEBUG = false
+local DEBUG = true
 
 local screen = "list"
 local selectedDevice = ""
