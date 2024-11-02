@@ -39,7 +39,9 @@ for k, v in ipairs(listOfDevices) do
     end
 end
 
+local x, y = mon.getSize()
+
 msg = "IGT " .. getIGT() .. " IRL " .. getRealTime()
-mon.setCursorPos(mon.getSize()[1] - #msg, mon.getSize()[2])
+mon.setCursorPos(x - #msg, y)
 mon.write(msg)
 
