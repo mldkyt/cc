@@ -1,2 +1,3 @@
 
-local mon = peripheral.wrap("monitor_2")
+local mon = peripheral.wrap("monitor_1")
+
