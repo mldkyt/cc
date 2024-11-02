@@ -99,7 +99,7 @@ function drawDeviceInformation()
         mon.write("[Clear]")
 
         local perXCur, perYCur = peripheral.call(selectedDevice, "getCursorPos")
-        local perBlink = peripheral.call(selectedDevice, "getBlink")
+        local perBlink = peripheral.call(selectedDevice, "getCursorBlink")
 
         mon.setCursorPos(2, 7)
         mon.write("Cursor: X: [- " .. string.format("%02d", perXCur) ..  " +], Y: [- " .. string.format("%02d", perYCur) .. " +]")
@@ -184,8 +184,8 @@ while true do
                 end
 
                 if p2 == 4 and p3 == 8 then
-                    local perBlink = not peripheral.call(selectedDevice, "getBlink")
-                    peripheral.call(selectedDevice, "setBlink", perBlink)
+                    local perBlink = not peripheral.call(selectedDevice, "getCursorBlink")
+                    peripheral.call(selectedDevice, "setCursorBlink", perBlink)
                 end
             elseif peripheral.getType(selectedDevice) == "computer" then
                 
