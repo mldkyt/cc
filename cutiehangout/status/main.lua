@@ -44,15 +44,12 @@ function drawListOfDevices()
     mon.write("TYPE")
 
     for k, v in ipairs(listOfDevices) do
-        local onlineStatus = "none"
         local methods = peripheral.getMethods(v)
         for _, v in ipairs(methods) do
             if v == "isOn" then
                 if peripheral.call(v, "isOn") then
-                    onlineStatus = "online"
                     mon.setBackgroundColor(colors.green)
                 else
-                    onlineStatus = "offline"
                     mon.setBackgroundColor(colors.red)
                 end
             end
@@ -65,9 +62,6 @@ function drawListOfDevices()
         
         mon.setCursorPos(30, k + 2)
         mon.write(peripheral.getType(v))
-
-        mon.setCursorPos(50, k + 2)
-        mon.write(onlineStatus)
     end
 
     local x, y = mon.getSize()
