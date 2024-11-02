@@ -3,6 +3,7 @@ local mon = peripheral.wrap("monitor_1")
 
 local screen = "list"
 local selectedDevice = ""
+local selectedMethod = ""
 
 function getRealTime()
     local hour = os.time("utc")
@@ -87,7 +88,13 @@ function drawDeviceInformation()
     mon.write(" Methods: ")
     for k, v in ipairs(methods) do
         mon.setCursorPos(2, k + 4)
+
+        if v == selectedMethod then
+            mon.setBackgroundColor(colors.blue)
+        end
+
         mon.write("  - " .. v .. "()")
+        mon.setBackgroundColor(colors.black)
     end
 end
 
@@ -109,6 +116,12 @@ while true do
         if screen == "device" then
             if p2 > 1 and p2 < 6 and p3 == 1 then
                 screen = "list"
+            end
+
+            local methods = peripheral.getMethods(selectedDevice)
+
+            if p2 > 5 and p2 < 15 and p3 > 5 and p3 < #methods + 5 then
+                selectedMethod = methods[p3 - 5]
             end
         end
     end
