@@ -100,8 +100,8 @@ while true do
     if event == "monitor_touch" then
         if screen == "list" then
             local devices = getDevices()
-            if p2 > 2 and p2 < 30 and p3 > 3 and p3 < #devices + 3 then
-                selectedDevice = devices[p3 - 3]
+            if p2 > 2 and p2 < 30 and p3 > 2 and p3 < #devices + 2 then
+                selectedDevice = devices[p3 - 2]
                 screen = "device"
             end
         end
