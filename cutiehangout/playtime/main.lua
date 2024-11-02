@@ -74,7 +74,6 @@ local mon = peripheral.wrap("Create_DisplayLink_1")
 local y, x = mon.getSize()
 
 mon.clear()
-mon.update()
 
 local j = 1
 
@@ -89,6 +88,7 @@ while true do
         
         a = json.decode(a.readAll())
     end
+    mon.clear()
 
     local onlinePlayers = 0
     local offlinePlayers = 0
