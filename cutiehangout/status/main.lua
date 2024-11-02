@@ -88,7 +88,7 @@ function drawDeviceInformation()
     if peripheral.getType(selectedDevice) == "monitor" then
         mon.setCursorPos(2, 4)
         local perX, perY = peripheral.call(selectedDevice, "getSize")
-        local perSize = peripheral.call(selectedDevice, "getFontSize")
+        local perSize = peripheral.call(selectedDevice, "getTextSize")
         mon.write("W: " .. perX .. ", H: " .. perY .. ", font size: " .. perSize)
     
         local methods = peripheral.getMethods(selectedDevice)
