@@ -147,19 +147,19 @@ while true do
                     peripheral.call(selectedDevice, "clear")
                 end
 
-                if p2 == 16 and p3 == 7 then
+                if p2 == 14 and p3 == 7 then
                     local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
                     perX = perX - 1
                     peripheral.call(selectedDevice, "setCursorPos", perX, perY)
                 end
 
-                if p2 == 20 and p3 == 7 then
+                if p2 == 19 and p3 == 7 then
                     local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
                     perX = perX + 1
                     peripheral.call(selectedDevice, "setCursorPos", perX, perY)
                 end
 
-                if p2 == 28 and p3 == 7 then
+                if p2 == 27 and p3 == 7 then
                     local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
                     perY = perY - 1
                     peripheral.call(selectedDevice, "setCursorPos", perX, perY)
