@@ -183,7 +183,7 @@ while true do
                     peripheral.call(selectedDevice, "setCursorPos", perX, perY)
                 end
 
-                if p2 == 4 and p3 == 8 then
+                if p2 == 3 and p3 == 8 then
                     local perBlink = not peripheral.call(selectedDevice, "getCursorBlink")
                     peripheral.call(selectedDevice, "setCursorBlink", perBlink)
                 end
