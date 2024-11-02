@@ -55,10 +55,11 @@ function drawListOfDevices()
 
         mon.setCursorPos(2, k + 2)
         mon.write(v)
-        mon.setCursorPos(30, k + 2)
-        mon.write(peripheral.getType(v))
 
         mon.setBackgroundColor(colors.black)
+        
+        mon.setCursorPos(30, k + 2)
+        mon.write(peripheral.getType(v))
     end
 
     local x, y = mon.getSize()
