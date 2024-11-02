@@ -74,7 +74,7 @@ local mon = peripheral.wrap("Create_DisplayLink_1")
 local y, x = mon.getSize()
 
 mon.clear()
-mon.clear()
+mon.update()
 
 local j = 1
 
