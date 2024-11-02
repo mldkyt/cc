@@ -101,7 +101,7 @@ function drawDeviceInformation()
         local perXCur, perYCur = peripheral.call(selectedDevice, "getCursorPos")
 
         mon.setCursorPos(2, 7)
-        mon.write("Cursor: X: [- " .. string.format("%02d", perXCur)  " +], Y: [- " .. string.format("%02d", perYCur) .. " +]")
+        mon.write("Cursor: X: [- " .. string.format("%02d", perXCur) ..  " +], Y: [- " .. string.format("%02d", perYCur) .. " +]")
     elseif peripheral.getType(selectedDevice) == "computer" then
 
     else
