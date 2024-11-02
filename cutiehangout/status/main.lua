@@ -31,10 +31,15 @@ mon.setCursorPos(30, 2)
 mon.write("TYPE")
 
 for k, v in ipairs(listOfDevices) do
+    if v == "right" or v == "left" or v == "top" or v == "bottom" or v == "back" or v == "front" then
+        goto continue
+    end
+
     mon.setCursorPos(2, k + 2)
     mon.write(v)
     mon.setCursorPos(30, k + 2)
     mon.write(peripheral.getType(v))
+    ::continue::
 end
 
 msg = "IGT " .. getIGT() .. " IRL " .. getRealTime()
