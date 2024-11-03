@@ -97,13 +97,14 @@ end
 local packages = fs.list("pack")
 local packagesCount = tostring(#packages)
 
-print("APP server started. Listening for package requests.")
+print("APP server 0.01 started. Listening for package requests.")
 
 while true do
     os.sleep(0.05)
     os.queueEvent("tick")
     event, p1, p2, p3, p4, p5 = os.pullEvent()
     if event == "rednet_message" and p3 == "app" then
+        print("Message from " .. p1 .. ": " .. p2)
         if p2 == "packageCount" then
             rednet.send(p1, packagesCount)
         end
