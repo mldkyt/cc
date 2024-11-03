@@ -106,12 +106,12 @@ while true do
     if event == "rednet_message" and p3 == "app" then
         print("Message from " .. p1 .. ": " .. p2)
         if p2 == "packageCount" then
-            rednet.send(p1, packagesCount)
+            rednet.send(p1, packagesCount, "app")
         end
 
         if p2 == "name" then
             print("Sending name to " .. p1)
-            rednet.send(p1, readFile("etc/hostname"))
+            rednet.send(p1, readFile("etc/hostname"), "app")
         end
     end
 end
