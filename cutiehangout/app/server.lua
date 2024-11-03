@@ -100,7 +100,7 @@ if args[1] == "daemon" then
     print("APP server" .. VERSION .. " started. Listening for package requests.")
 
     while true do
-        os.queueEvent("tick")
+        os.sleep(0)
         event, p1, p2, p3, p4, p5 = os.pullEvent()
         if event == "rednet_message" and p3 == "app" then
             if p2 == "packageCount" then
