@@ -53,6 +53,7 @@ function fetchPackages()
     local totalPackagesCount = 0
 
     for _, v in ipairs(appServers) do
+        print("Sending request \"name\" to "..v)
         rednet.send(v, "name", "app")
         local hostname = rednet.receive("app", 1)
         term.write("Repository " .. hostname .. "... ")
