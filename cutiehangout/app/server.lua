@@ -52,6 +52,8 @@ end
 
 rednet.host("app", readFile("etc/hostname"))
 
+-- Host APP server
+
 if not fs.exists("pack") then
     fs.makeDir("pack")
 end
