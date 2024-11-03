@@ -20,7 +20,7 @@ function writeFile(filename, data)
 end
 
 if not fs.exists("/opt/app/disclaimer_shown") then
-    print("app in ComputerCraft is based on a decentralized network of app servers.")
+    print("APP is based on a decentralized network of app servers.")
     print("By continuing, app will seek out to the network to find any app servers to download from. This might take upwards of a few seconds.")
     read()
     writeFile("/opt/app/disclaimer_shown", "true")
@@ -49,7 +49,6 @@ function fetchPackages()
     for _, remote in ipairs(appServers) do
         rednet.send(remote, "name", "app")
         local pc, hostname = rednet.receive("app", 0.2)
-        print("message", pc, hostname)
 
         if pc ~= nil then
             term.write("Repository " .. hostname .. "... ")
@@ -68,8 +67,6 @@ function fetchPackages()
             end
 
             print(thisRemote .. " packages")
-        else
-            print("PC " .. remote .. " is not an APP server, skipping")
         end
     end
 
@@ -88,6 +85,3 @@ print("APP version " .. VERSION)
 local packages = fetchPackages()
 print("A total of " .. #packages .. " packages was found on the servers.")
 
-for _, v in ipairs(packages) do
-    print(" - " ..v)
-end

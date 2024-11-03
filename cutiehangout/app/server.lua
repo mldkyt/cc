@@ -106,7 +106,6 @@ if args[1] == "daemon" then
         -- event, p1, p2, p3, p4, p5 = os.pullEvent()
         local id, message = rednet.receive("app")
         if id ~= nil then
-            print("msg", id, message)
             if message == "packageCount" then
                 os.sleep(0.05)
                 rednet.send(id, packagesCount, "app")
@@ -126,12 +125,10 @@ if args[1] == "daemon" then
             end
 
             if message == "list" then
-                print("Listing packages")
                 local packages = fs.list("pack")
 
                 for _, v in ipairs(packages) do
                     v = string.sub(v, 1, -5)
-                    print(" - " .. v)
                     rednet.send(id, v, "app")
                 end
             end
