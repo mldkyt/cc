@@ -33,7 +33,7 @@ function downloadFile(f, l)
     print(f .. ": done updating.")
 end
 
-downloadFile("startup", "https://git.mldchan.dev/mld/cc/-/raw/main/cutiehangout/app/server0.lua?ref_type=heads&inline=false")
+downloadFile("startup", "https://git.mldchan.dev/mld/cc/-/raw/main/cutiehangout/app/server.lua?ref_type=heads&inline=false")
 
 function readFile(filename)
     -- check if file exists, if not, return empty string
