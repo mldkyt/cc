@@ -5,7 +5,7 @@ if not fs.exists("/opt/app/disclaimer_shown") then
     print("app in ComputerCraft is based on a decentralized network of app servers.")
     print("By continuing, app will seek out to the network to find any app servers to download from. This might take upwards of a few seconds.")
     read()
-    writeFile("/opt/apt/disclaimer_shown", "true")
+    writeFile("/opt/app/disclaimer_shown", "true")
 end
 
 function connectRednet()
