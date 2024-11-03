@@ -105,6 +105,7 @@ if args[1] == "daemon" then
         os.sleep(0)
         -- event, p1, p2, p3, p4, p5 = os.pullEvent()
         local id, message = rednet.receive("app", 0.5)
+        print("msg", id, message)
         if id ~= nil then
             print("Message " .. message .. " from " .. id)
             if message == "packageCount" then
