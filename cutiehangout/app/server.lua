@@ -58,6 +58,7 @@ function connectRednet()
         local type = peripheral.getType(v)
         if type == "modem" then
             rednet.open(v)
+            print("Opening rednet connection on " .. v)
             opened = true
         end
     end
@@ -102,35 +103,35 @@ if args[1] == "daemon" then
 
     while true do
         os.sleep(0)
-        event, p1, p2, p3, p4, p5 = os.pullEvent()
-        print("DEBUG", event, p1, p2, p3, p4, p5)
-        if event == "rednet_message" and p3 == "app" then
-            print("Message " .. p2 .. " from " .. p1)
-            if p2 == "packageCount" then
+        -- event, p1, p2, p3, p4, p5 = os.pullEvent()
+        local id, message = rednet.receive("app", 0.5)
+        if id ~= nil then
+            print("Message " .. message .. " from " .. id)
+            if message == "packageCount" then
                 os.sleep(0.05)
-                rednet.send(p1, packagesCount, "app")
+                rednet.send(id, packagesCount, "app")
             end
 
-            if p2 == "name" then
+            if message == "name" then
                 os.sleep(0.05)
-                rednet.send(p1, readFile("etc/hostname"), "app")
+                rednet.send(id, readFile("etc/hostname"), "app")
             end
 
-            if p2 == "package" then
+            if message == "package" then
                 local pc, packageName = rednet.receive("app", 0.05)
                 if pc ~= nil and fs.exists("pack/" .. packageName .. ".lua") then
-                    rednet.send(p1, readFile("pack/" .. packageName .. ".lua"), "app")
+                    rednet.send(id, readFile("pack/" .. packageName .. ".lua"), "app")
                 end
             end
 
-            if p2 == "list" then
+            if message == "list" then
                 print("Listing packages")
                 local packages = fs.list("pack")
 
                 for _, v in ipairs(packages) do
                     v = string.sub(v, 1, -5)
                     print(" - " .. v)
-                    rednet.send(p1, v, "app")
+                    rednet.send(id, v, "app")
                 end
             end
         end
