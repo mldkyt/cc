@@ -53,9 +53,9 @@ function fetchPackages()
     local totalPackagesCount = 0
 
     for _, v in ipairs(appServers) do
-        term.write("Getting from ")
         rednet.send(v, "name", "app")
         local hostname = rednet.receive("app", 1)
+        term.write("Repository " .. hostname .. "... ")
         if hostname == nil then
             setTextColor(colors.red)
             print("No hostname received")
