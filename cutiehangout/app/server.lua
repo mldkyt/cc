@@ -25,6 +25,8 @@ function connectRednet()
             return true
         end
     end
+
+    return false
 end
 
 -- Setup tasks --
@@ -43,6 +45,7 @@ end
 
 if not connectRednet() then
     print("Rednet host requires internet.")
+    return
 end
 
 rednet.host("app", readFile("etc/hostname"))
