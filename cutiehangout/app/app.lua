@@ -65,7 +65,7 @@ function fetchPackages()
 
             print(thisRemote .. " packages")
         else
-            print("PC " .. pc .. " is not an APP server, skipping")
+            print("PC " .. remote .. " is not an APP server, skipping")
         end
     end
 
