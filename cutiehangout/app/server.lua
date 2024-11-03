@@ -4,7 +4,6 @@ function reset()
 end
 
 function downloadFile(f, l)
-    print(f .. ": downloading update..")
     -- Get string
     local startupUpdate, errorMessage = http.get(l, {
         ["User-Agent"] = "CutieHangout/1.0"
@@ -21,19 +20,15 @@ function downloadFile(f, l)
 
     local fileC = startupUpdate.readAll()
 
-    print(f .. ": deleting...")
     -- Delete the startup file
     fs.delete(f .. ".lua")
 
-    print(f .. ": replacing..")
     -- Recreate the startup file
     local file = fs.open(f .. ".lua", "w")
     file.write(fileC)
     file.close()
-    print(f .. ": done updating.")
 end
 
-downloadFile("startup", "https://git.mldchan.dev/mld/cc/-/raw/main/cutiehangout/app/server.lua?ref_type=heads&inline=false")
 
 function readFile(filename)
     -- check if file exists, if not, return empty string
@@ -67,51 +62,59 @@ function connectRednet()
 
     return opened
 end
+local args = {...}
 
--- Setup tasks --
+if args[1] == "daemon" then
+
+    -- Setup tasks --
+    if not fs.exists("etc") then
+        fs.makeDir("etc")
+    end
+
+    if not fs.exists("etc/hostname") then
+        term.write("Hostname: ")
+        local hostname = read()
+        writeFile("etc/hostname", hostname)
+    end
 
 
-if not fs.exists("etc") then
-    fs.makeDir("etc")
-end
+    if not connectRednet() then
+        print("Rednet host requires internet.")
+        return
+    end
 
-if not fs.exists("etc/hostname") then
-    term.write("Hostname: ")
-    local hostname = read()
-    writeFile("etc/hostname", hostname)
-end
+    rednet.host("app", readFile("etc/hostname"))
 
+    -- Host APP server
 
-if not connectRednet() then
-    print("Rednet host requires internet.")
-    return
-end
+    if not fs.exists("pack") then
+        fs.makeDir("pack")
+    end
 
-rednet.host("app", readFile("etc/hostname"))
+    local packages = fs.list("pack")
+    local packagesCount = tostring(#packages)
 
--- Host APP server
+    print("APP server 0.05 started. Listening for package requests.")
 
-if not fs.exists("pack") then
-    fs.makeDir("pack")
-end
+    while true do
+        os.queueEvent("tick")
+        event, p1, p2, p3, p4, p5 = os.pullEvent()
+        if event == "rednet_message" and p3 == "app" then
+            if p2 == "packageCount" then
+                os.sleep(0.05)
+                rednet.send(p1, packagesCount, "app")
+            end
 
-local packages = fs.list("pack")
-local packagesCount = tostring(#packages)
-
-print("APP server 0.05 started. Listening for package requests.")
-
-while true do
-    os.queueEvent("tick")
-    event, p1, p2, p3, p4, p5 = os.pullEvent()
-    if event == "rednet_message" and p3 == "app" then
-        if p2 == "packageCount" then
-            os.sleep(0.05)
-            rednet.send(p1, packagesCount, "app")
-        end
-
-        if p2 == "name" then
-            os.sleep(0.05)
-            rednet.send(p1, readFile("etc/hostname"), "app")
+            if p2 == "name" then
+                os.sleep(0.05)
+                rednet.send(p1, readFile("etc/hostname"), "app")
+            end
         end
     end
 end
+
+downloadFile("startup", "https://git.mldchan.dev/mld/cc/-/raw/main/cutiehangout/app/server.lua?ref_type=heads&inline=false")
+
+print("APP server bootstrapper ".. VERSION .. ": Starting server")
+
+shell.run("startup daemon")
