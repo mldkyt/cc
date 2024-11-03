@@ -98,7 +98,7 @@ end
 local packages = fs.list("pack")
 local packagesCount = tostring(#packages)
 
-print("APP server 0.03 started. Listening for package requests.")
+print("APP server 0.04 started. Listening for package requests.")
 
 while true do
     os.queueEvent("tick")
