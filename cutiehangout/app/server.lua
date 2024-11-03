@@ -47,7 +47,11 @@ end
 
 rednet.host("app", readFile("etc/hostname"))
 
-local packages = fs.list("packages")
+if not fs.exists("pack") then
+    fs.makeDir("pack")
+end
+
+local packages = fs.list("pack")
 local packagesCount = tostring(#packages)
 
 while true do
