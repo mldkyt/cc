@@ -125,6 +125,7 @@ if args[1] == "daemon" then
 
                 for _, v in ipairs(packages) do
                     v = string.sub(v, 1, -5)
+                    print(v)
                     rednet.send(p1, v, "app")
                 end
             end
