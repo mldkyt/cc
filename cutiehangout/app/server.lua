@@ -1,4 +1,6 @@
 
+VERSION = "0.06"
+
 function reset()
     rednet.close()
 end
@@ -62,6 +64,7 @@ function connectRednet()
 
     return opened
 end
+
 local args = {...}
 
 if args[1] == "daemon" then
@@ -94,7 +97,7 @@ if args[1] == "daemon" then
     local packages = fs.list("pack")
     local packagesCount = tostring(#packages)
 
-    print("APP server 0.05 started. Listening for package requests.")
+    print("APP server" .. VERSION .. " started. Listening for package requests.")
 
     while true do
         os.queueEvent("tick")
