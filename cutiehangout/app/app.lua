@@ -22,7 +22,7 @@ end
 
 function fetchPackages()
     term.write("Searching for app servers... ")
-    local appServers = rednet.lookup("apt")
+    local appServers = rednet.lookup("app")
     print(#aptServers .. " found")
     
     for _, v in ipairs(aptServers) do
