@@ -98,6 +98,7 @@ if args[1] == "daemon" then
     local packagesCount = tostring(#packages)
 
     print("APP server" .. VERSION .. " started. Listening for package requests.")
+    print("Hosting " .. packagesCount .. " packages.")
 
     while true do
         os.sleep(0)
