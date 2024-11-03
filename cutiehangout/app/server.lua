@@ -112,6 +112,22 @@ if args[1] == "daemon" then
                 os.sleep(0.05)
                 rednet.send(p1, readFile("etc/hostname"), "app")
             end
+
+            if p2 == "package" then
+                local pc, packageName = rednet.receive("app", 0.05)
+                if pc ~= nil and fs.exists("pack/" .. packageName .. ".lua") then
+                    rednet.send(p1, readFile("pack/" .. packageName .. ".lua"), "app")
+                end
+            end
+
+            if p2 == "list" then
+                local packages = fs.list("pack")
+
+                for _, v in ipairs(packages) do
+                    v = string.sub(v, 1, -5)
+                    rednet.send(p1, v, "app")
+                end
+            end
         end
     end
 end
