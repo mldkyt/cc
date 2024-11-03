@@ -67,6 +67,8 @@ function fetchPackages()
             setTextColor(colors.white)
         end
     end
+
+    return totalPackagesCount
 end
 
 if not connectRednet() then
