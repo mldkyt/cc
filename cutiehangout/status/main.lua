@@ -127,8 +127,8 @@ end
 local lastClock = os.time("utc")
 
 while true do
-    os.queueEvent("drawListOfDevices")
     os.sleep(0.05)
+    os.queueEvent("drawListOfDevices")
     event, p1, p2, p3, p4, p5 = os.pullEvent()
 
     if event == "monitor_touch" then
