@@ -55,6 +55,7 @@ function fetchPackages()
     for _, v in ipairs(appServers) do
         rednet.send(v, "name", "app")
         local hostname = rednet.receive("app", 0.2)
+        print("found hostname "..hostname)
         if hostname ~= nil then
             term.write("Repository " .. hostname .. "... ")
             rednet.send(v, "packageCount", "app")
