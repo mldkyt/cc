@@ -50,23 +50,33 @@ function fetchPackages()
     local appServers = {rednet.lookup("app")}
     print(#appServers .. " found")
     
-    local totalPackagesCount = 0
+    local packages = {}
 
-    for _, v in ipairs(appServers) do
-        rednet.send(v, "name", "app")
+    for _, remote in ipairs(appServers) do
+        rednet.send(remote, "name", "app")
         local pc, hostname = rednet.receive("app", 0.2)
         if pc ~= nil then
             term.write("Repository " .. hostname .. "... ")
-            rednet.send(v, "packageCount", "app")
-            local pc, packageCount = rednet.receive("app")
+            rednet.send(remote, "packageCount", "app")
+            
+            rednet.send(remote, "list", "app")
+
+            local thisRemote = 0
+            while true do
+                local _, package = rednet.receive("app", 0.05)
+                if package ~= nil then
+                    table.insert(packages, package)
+                    thisRemote = thisRemote + 1
+                end
+            end
+
             setTextColor(colors.green)
-            totalPackagesCount = tonumber(packageCount) + totalPackagesCount
-            print(packageCount .. " packages")
+            print(thisRemote .. " packages")
             setTextColor(colors.white)
         end
     end
 
-    return totalPackagesCount
+    return packages
 end
 
 -- MAIN CODE
@@ -79,4 +89,8 @@ end
 print("APP version " .. VERSION)
 
 local packages = fetchPackages()
-print("A total of " .. packages .. " packages was found on the servers.")
+print("A total of " .. #packages .. " packages was found on the servers.")
+
+for _, v in ipairs(packages) do
+    print(" - " ..v)
+end
