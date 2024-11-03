@@ -103,6 +103,7 @@ if args[1] == "daemon" then
     while true do
         os.sleep(0)
         event, p1, p2, p3, p4, p5 = os.pullEvent()
+        print("DEBUG", event, p1, p2, p3, p4, p5)
         if event == "rednet_message" and p3 == "app" then
             print("Message " .. p2 .. " from " .. p1)
             if p2 == "packageCount" then

@@ -19,12 +19,6 @@ function writeFile(filename, data)
     file.close()
 end
 
-function setTextColor(color)
-    if term.isColor() then
-        term.setTextColor(color)
-    end
-end
-
 if not fs.exists("/opt/app/disclaimer_shown") then
     print("app in ComputerCraft is based on a decentralized network of app servers.")
     print("By continuing, app will seek out to the network to find any app servers to download from. This might take upwards of a few seconds.")
@@ -55,6 +49,7 @@ function fetchPackages()
     for _, remote in ipairs(appServers) do
         rednet.send(remote, "name", "app")
         local pc, hostname = rednet.receive("app", 0.2)
+        
         if pc ~= nil then
             term.write("Repository " .. hostname .. "... ")            
             rednet.send(remote, "list", "app")
@@ -68,9 +63,9 @@ function fetchPackages()
                 end
             end
 
-            setTextColor(colors.green)
             print(thisRemote .. " packages")
-            setTextColor(colors.white)
+        else
+            print("PC " .. pc .. " is not an APP server, skipping")
         end
     end
 
