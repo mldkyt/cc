@@ -77,6 +77,7 @@ while true do
         end
 
         if p2 == "name" then
+            print("Sending name to " .. p1)
             rednet.send(p1, readFile("etc/hostname"))
         end
     end
