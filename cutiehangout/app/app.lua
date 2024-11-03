@@ -1,6 +1,24 @@
 
 VERSION = "1.0"
 
+function readFile(filename)
+    -- check if file exists, if not, return empty string
+    if not fs.exists(filename) then
+        return ""
+    end
+
+    file = fs.open(filename, "r")
+    content = file.readAll()
+    file.close()
+    return content
+end
+
+function writeFile(filename, data)
+    file = fs.open(filename, "w")
+    file.write(data)
+    file.close()
+end
+
 function setTextColor(color)
     if term.isColor() then
         term.setTextColor(color)
