@@ -1,6 +1,12 @@
 
 VERSION = "1.0"
 
+function setTextColor(color)
+    if term.isColor() then
+        term.setTextColor(color)
+    end
+end
+
 if not fs.exists("/opt/app/disclaimer_shown") then
     print("app in ComputerCraft is based on a decentralized network of app servers.")
     print("By continuing, app will seek out to the network to find any app servers to download from. This might take upwards of a few seconds.")
@@ -25,12 +31,22 @@ function fetchPackages()
     local appServers = rednet.lookup("app")
     print(#appServers .. " found")
     
+    local totalPackagesCount = 0
+
     for _, v in ipairs(appServers) do
         term.write("Getting from " .. v "... ")
-        rednet.send(v, "listPackages")
-        term.setTextColor(colors.green)
-        print("done")
-        term.setTextColor(colors.white)
+        rednet.send(v, "packageCount", "app")
+        local packageCount = rednet.receive("app", 1)
+        if packageCount == nil then
+            setTextColor(colors.red)
+            print("no response")
+            setTextColor(colors.white)
+        else
+            setTextColor(colors.green)
+            totalPackagesCount = tonumber(packageCount) + totalPackagesCount
+            print(packageCount .. " packages")
+            setTextColor(colors.white)
+        end
     end
 end
 
