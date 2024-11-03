@@ -56,9 +56,7 @@ function fetchPackages()
         rednet.send(remote, "name", "app")
         local pc, hostname = rednet.receive("app", 0.2)
         if pc ~= nil then
-            term.write("Repository " .. hostname .. "... ")
-            rednet.send(remote, "packageCount", "app")
-            
+            term.write("Repository " .. hostname .. "... ")            
             rednet.send(remote, "list", "app")
 
             local thisRemote = 0
