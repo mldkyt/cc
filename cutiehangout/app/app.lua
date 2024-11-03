@@ -35,7 +35,8 @@ end
 function connectRednet()
     local peripherals = peripheral.getNames()
     for k, v in ipairs(peripherals) do
-        if v == "modem" then
+        local type = peripheral.getType(v)
+        if type == "modem" then
             rednet.open(v)
             return true
         end
