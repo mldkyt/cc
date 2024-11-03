@@ -73,3 +73,8 @@ if not connectRednet() then
     print("Could not connect to the network. app is unable to download packages.")
     return
 end
+
+print("APP version " .. VERSION)
+
+local packages = fetchPackages()
+print("A total of " .. packages .. " was found on the servers.")
