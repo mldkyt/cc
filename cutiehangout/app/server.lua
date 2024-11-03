@@ -69,5 +69,9 @@ while true do
         if p2 == "packageCount" then
             rednet.send(p1, packagesCount)
         end
+
+        if p2 == "name" then
+            rednet.send(p1, readFile("etc/hostname"))
+        end
     end
 end
