@@ -104,7 +104,7 @@ if args[1] == "daemon" then
     while true do
         os.sleep(0)
         -- event, p1, p2, p3, p4, p5 = os.pullEvent()
-        local id, message = rednet.receive("app", 0.05)
+        local id, message = rednet.receive("app")
         if id ~= nil then
             print("msg", id, message)
             if message == "packageCount" then
@@ -118,7 +118,7 @@ if args[1] == "daemon" then
             end
 
             if message == "package" then
-                local pc, packageName = rednet.receive("app", 0.05)
+                local pc, packageName = rednet.receive("app", 0.1)
                 if pc ~= nil and fs.exists("pack/" .. packageName .. ".lua") then
                     rednet.send(id, readFile("pack/" .. packageName .. ".lua"), "app")
                 end

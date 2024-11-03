@@ -52,7 +52,7 @@ function fetchPackages()
         print("message", pc, hostname)
 
         if pc ~= nil then
-            term.write("Repository " .. hostname .. "... ")            
+            term.write("Repository " .. hostname .. "... ")
             rednet.send(remote, "list", "app")
 
             local thisRemote = 0
