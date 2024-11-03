@@ -1,4 +1,8 @@
 
+function reset()
+    rednet.close()
+end
+
 function readFile(filename)
     -- check if file exists, if not, return empty string
     if not fs.exists(filename) then
