@@ -124,85 +124,89 @@ function drawDeviceInformation()
     end
 end
 
-local lastClock = os.time("utc")
-
-while true do
-    os.sleep(0.05)
-    os.queueEvent("drawListOfDevices")
-    event, p1, p2, p3, p4, p5 = os.pullEvent()
-
-    if event == "monitor_touch" then
-        if DEBUG then
-            mon.setCursorPos(p2, p3)
-            mon.write("X")
-            mon.setCursorPos(p2, p3 + 1)
-            mon.write("X="..p2)
-            mon.setCursorPos(p2, p3 + 2)
-            mon.write("Y="..p3)
-        end
-
-        if screen == "list" then
-            local devices = getDevices()
-            if p2 > 2 and p2 < 30 and p3 > 2 and p3 < #devices + 3 then
-                selectedDevice = devices[p3 - 2]
-                screen = "device"
-            end
-        end
-
-        if screen == "device" then
-            if p2 > 1 and p2 < 6 and p3 == 1 then
-                screen = "list"
-            end
-
-            
-            if peripheral.getType(selectedDevice) == "monitor" then
-                if p2 > 2 and p2 < 9 and p3 == 6 then
-                    peripheral.call(selectedDevice, "clear")
-                end
-
-                if p2 == 14 and p3 == 7 then
-                    local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
-                    perX = perX - 1
-                    peripheral.call(selectedDevice, "setCursorPos", perX, perY)
-                end
-
-                if p2 == 19 and p3 == 7 then
-                    local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
-                    perX = perX + 1
-                    peripheral.call(selectedDevice, "setCursorPos", perX, perY)
-                end
-
-                if p2 == 27 and p3 == 7 then
-                    local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
-                    perY = perY - 1
-                    peripheral.call(selectedDevice, "setCursorPos", perX, perY)
-                end
-
-                if p2 == 32 and p3 == 7 then
-                    local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
-                    perY = perY + 1
-                    peripheral.call(selectedDevice, "setCursorPos", perX, perY)
-                end
-
-                if p2 == 3 and p3 == 8 then
-                    local perBlink = not peripheral.call(selectedDevice, "getCursorBlink")
-                    peripheral.call(selectedDevice, "setCursorBlink", perBlink)
-                end
-            elseif peripheral.getType(selectedDevice) == "computer" then
-                
-            end
-        end
-    end
+function handleClicking()
+    while true do
+        event, p1, p2, p3, p4, p5 = os.pullEvent()
     
-    if lastClock ~= os.time("utc") then
+        if event == "monitor_touch" then
+            if DEBUG then
+                mon.setCursorPos(p2, p3)
+                mon.write("X")
+                mon.setCursorPos(p2, p3 + 1)
+                mon.write("X="..p2)
+                mon.setCursorPos(p2, p3 + 2)
+                mon.write("Y="..p3)
+            end
+    
+            if screen == "list" then
+                local devices = getDevices()
+                if p2 > 2 and p2 < 30 and p3 > 2 and p3 < #devices + 3 then
+                    selectedDevice = devices[p3 - 2]
+                    screen = "device"
+                end
+            end
+    
+            if screen == "device" then
+                if p2 > 1 and p2 < 6 and p3 == 1 then
+                    screen = "list"
+                end
+    
+                
+                if peripheral.getType(selectedDevice) == "monitor" then
+                    if p2 > 2 and p2 < 9 and p3 == 6 then
+                        peripheral.call(selectedDevice, "clear")
+                    end
+    
+                    if p2 == 14 and p3 == 7 then
+                        local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
+                        perX = perX - 1
+                        peripheral.call(selectedDevice, "setCursorPos", perX, perY)
+                    end
+    
+                    if p2 == 19 and p3 == 7 then
+                        local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
+                        perX = perX + 1
+                        peripheral.call(selectedDevice, "setCursorPos", perX, perY)
+                    end
+    
+                    if p2 == 27 and p3 == 7 then
+                        local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
+                        perY = perY - 1
+                        peripheral.call(selectedDevice, "setCursorPos", perX, perY)
+                    end
+    
+                    if p2 == 32 and p3 == 7 then
+                        local perX, perY = peripheral.call(selectedDevice, "getCursorPos")
+                        perY = perY + 1
+                        peripheral.call(selectedDevice, "setCursorPos", perX, perY)
+                    end
+    
+                    if p2 == 3 and p3 == 8 then
+                        local perBlink = not peripheral.call(selectedDevice, "getCursorBlink")
+                        peripheral.call(selectedDevice, "setCursorBlink", perBlink)
+                    end
+                elseif peripheral.getType(selectedDevice) == "computer" then
+                    
+                end
+            end
+        end
+    end    
+end
+
+function handleDrawing()    
+    while true do
+        os.sleep(1)
+        
         if screen == "list" then
             drawListOfDevices()
         end
     
         if screen == "device" then
             drawDeviceInformation()
-        end
-
-        lastClock = os.time("utc")
+        end        
     end
 end
+
+print("Starting display loops")
+parallel.waitForAny(handleDrawing, handleClicking)
+print("One of the loops exited.")
