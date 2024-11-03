@@ -53,6 +53,7 @@ function fetchPackages()
 
         if pc ~= nil then
             term.write("Repository " .. hostname .. "... ")
+            os.sleep(0.05)
             rednet.send(remote, "list", "app")
 
             local thisRemote = 0
