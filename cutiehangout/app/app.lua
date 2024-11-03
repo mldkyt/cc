@@ -35,6 +35,6 @@ function fetchPackages()
 end
 
 if not connectRednet() then
-    print("Could not connect to the network. APT is unable to download packages.")
+    print("Could not connect to the network. app is unable to download packages.")
     return
 end
