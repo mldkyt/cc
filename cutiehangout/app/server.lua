@@ -104,7 +104,7 @@ while true do
     os.queueEvent("tick")
     event, p1, p2, p3, p4, p5 = os.pullEvent()
     if event == "rednet_message" then
-        print("Message from " .. p1 .. ": " .. p2)
+        print("Message from " .. tostring(p1) .. ": " .. tostring(p2))
         if p2 == "packageCount" then
             os.sleep(0.05)
             rednet.send(p1, packagesCount, "app")
