@@ -111,7 +111,6 @@ while true do
 
         if p2 == "name" then
             os.sleep(0.05)
-            print("Hostname: "..readFile("etc/hostname"))
             rednet.send(p1, readFile("etc/hostname"), "app")
         end
     end
