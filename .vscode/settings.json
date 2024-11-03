@@ -41,13 +41,13 @@
     "Lua.diagnostics.disable": [
         "undefined-field",
         "deprecated"
-    ],
-    "emeraldwalk.runonsave": {
-        "commands": [
-            {
-                "match": ".*\\.(lua|json)$",
-                "cmd": "python Commit.py"
-            }
-        ]
-    }
+    ]
+    // "emeraldwalk.runonsave": {
+    //     "commands": [
+    //         {
+    //             "match": ".*\\.(lua|json)$",
+    //             "cmd": "python Commit.py"
+    //         }
+    //     ]
+    // }
 }
