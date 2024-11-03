@@ -70,7 +70,7 @@ function getIGT()
     return string.format("%02d", hour) .. ":" .. string.format("%02d", minute)
 end
 
-local mon = peripheral.wrap("Create_DisplayLink_2")
+local mon = peripheral.wrap("top")
 local y, x = mon.getSize()
 
 mon.clear()
