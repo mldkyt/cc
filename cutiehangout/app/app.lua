@@ -21,7 +21,7 @@ function connectRednet()
 end
 
 function fetchPackages()
-    term.write("Searching for APT servers... ")
+    term.write("Searching for app servers... ")
     local aptServers = rednet.lookup("apt")
     print(#aptServers .. " found")
     
