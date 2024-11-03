@@ -1,5 +1,5 @@
 
-VERSION = "0.07"
+VERSION = "0.1"
 
 function reset()
     rednet.close()
