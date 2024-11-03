@@ -65,6 +65,8 @@ end
 local packages = fs.list("pack")
 local packagesCount = tostring(#packages)
 
+print("APP server started. Listening for packages.")
+
 while true do
     os.sleep(0.05)
     os.queueEvent("tick")
