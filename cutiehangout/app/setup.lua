@@ -7,8 +7,8 @@ end
 
 shell.run("mkdir /bin")
 shell.run("mkdir /opt")
-shell.run("mkdir /opt/apt")
-shell.run("copy /disk/apt /bin/apt")
+shell.run("mkdir /opt/app")
+shell.run("copy /disk/app /bin/app")
 
-local file = "{\"apps\":[{\"name\":\"apt\",\"version\":\"1.0\"}]}"
-writeFile("/opt/apt/packages", file)
+local file = "{\"apps\":[{\"name\":\"app\",\"version\":\"1.0\"}]}"
+writeFile("/opt/app/packages", file)
