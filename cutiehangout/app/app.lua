@@ -54,7 +54,7 @@ function fetchPackages()
 
     for _, v in ipairs(appServers) do
         term.write("Getting from ")
-        rednet.send(v, "name")
+        rednet.send(v, "name", "app")
         local hostname = rednet.receive("app", 1)
         if hostname == nil then
             setTextColor(colors.red)
