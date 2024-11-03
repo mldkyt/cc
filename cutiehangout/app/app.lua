@@ -53,14 +53,17 @@ function fetchPackages()
     local totalPackagesCount = 0
 
     for _, v in ipairs(appServers) do
-        term.write("Getting from " .. v .. "... ")
-        rednet.send(v, "packageCount", "app")
-        local packageCount = rednet.receive("app", 1)
-        if packageCount == nil then
+        term.write("Getting from ")
+        rednet.send(v, "name")
+        local hostname = rednet.receive(v, 1)
+        if hostname == nil then
             setTextColor(colors.red)
-            print("no response")
+            print("No hostname received")
             setTextColor(colors.white)
         else
+            term.write(hostname .. "... ")
+            rednet.send(v, "packageCount", "app")
+            local packageCount = rednet.receive("app", 1)
             setTextColor(colors.green)
             totalPackagesCount = tonumber(packageCount) + totalPackagesCount
             print(packageCount .. " packages")
