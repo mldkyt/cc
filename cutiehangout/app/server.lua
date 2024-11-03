@@ -101,7 +101,6 @@ local packagesCount = tostring(#packages)
 print("APP server 0.03 started. Listening for package requests.")
 
 while true do
-    os.sleep(0.05)
     os.queueEvent("tick")
     event, p1, p2, p3, p4, p5 = os.pullEvent()
     if event == "rednet_message" then
