@@ -49,7 +49,8 @@ function fetchPackages()
     for _, remote in ipairs(appServers) do
         rednet.send(remote, "name", "app")
         local pc, hostname = rednet.receive("app", 0.2)
-        
+        print("message", pc, hostname)
+
         if pc ~= nil then
             term.write("Repository " .. hostname .. "... ")            
             rednet.send(remote, "list", "app")
