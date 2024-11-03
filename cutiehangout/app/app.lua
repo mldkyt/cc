@@ -25,7 +25,7 @@ function fetchPackages()
     local appServers = rednet.lookup("app")
     print(#appServers .. " found")
     
-    for _, v in ipairs(aptServers) do
+    for _, v in ipairs(appServers) do
         term.write("Getting from " .. v "... ")
         rednet.send(v, "listPackages")
         term.setTextColor(colors.green)
