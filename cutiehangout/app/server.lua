@@ -121,7 +121,6 @@ if args[1] == "daemon" then
                 local pc, packageName = rednet.receive("app", 0.1)
                 if pc ~= nil and fs.exists("pack/" .. packageName .. ".lua") then
                     rednet.send(id, readFile("pack/" .. packageName .. ".lua"), "app")
-                    os.sleep(0.05)
                 end
             end
 
