@@ -97,7 +97,7 @@ end
 local packages = fs.list("pack")
 local packagesCount = tostring(#packages)
 
-print("APP server 0.01 started. Listening for package requests.")
+print("APP server 0.02 started. Listening for package requests.")
 
 while true do
     os.sleep(0.05)
