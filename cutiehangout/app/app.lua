@@ -60,6 +60,8 @@ function fetchPackages()
                 if package ~= nil then
                     table.insert(packages, package)
                     thisRemote = thisRemote + 1
+                else
+                    break
                 end
             end
 
