@@ -47,7 +47,7 @@ end
 
 function fetchPackages()
     term.write("Searching for app servers... ")
-    local appServers = rednet.lookup("app")
+    local appServers = {rednet.lookup("app")}
     print(#appServers .. " found")
     
     local totalPackagesCount = 0
