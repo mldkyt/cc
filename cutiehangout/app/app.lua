@@ -53,7 +53,7 @@ function fetchPackages()
     local totalPackagesCount = 0
 
     for _, v in ipairs(appServers) do
-        term.write("Getting from " .. v "... ")
+        term.write("Getting from " .. v .. "... ")
         rednet.send(v, "packageCount", "app")
         local packageCount = rednet.receive("app", 1)
         if packageCount == nil then
