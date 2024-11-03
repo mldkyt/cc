@@ -103,7 +103,7 @@ print("APP server 0.05 started. Listening for package requests.")
 while true do
     os.queueEvent("tick")
     event, p1, p2, p3, p4, p5 = os.pullEvent()
-    if event == "rednet_message" then
+    if event == "rednet_message" and p3 == "app" then
         if p2 == "packageCount" then
             os.sleep(0.05)
             rednet.send(p1, packagesCount, "app")
@@ -111,6 +111,7 @@ while true do
 
         if p2 == "name" then
             os.sleep(0.05)
+            print("Hostname: "..readFile("etc/hostname"))
             rednet.send(p1, readFile("etc/hostname"), "app")
         end
     end
