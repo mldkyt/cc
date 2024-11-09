@@ -84,21 +84,12 @@ local data = nil
 
 function fetchData()
     while true do
-        mon.clear()
-        mon.update()
-        mon.setCursorPos(x / 2 - #"Refreshing..." / 2, y / 2 - 1)
-        mon.write("Refreshing...")
-        mon.update()
-
         local response = http.get("https://chb.mldchan.dev/api/get", {
             ["Accept"] = "application/json",
             ["User-Agent"] = "CutieHangout/1.0"
         })
 
         data = json.decode(response.readAll())
-
-        mon.clear()
-        mon.update()
         
         os.sleep(5) -- Fetch every 5 seconds
     end
