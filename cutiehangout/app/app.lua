@@ -99,6 +99,7 @@ function downloadApp(apps, app)
     end
 
     if not appValid then
+        print("App " .. app .. " was not found in servers.")
         return
     end
 
