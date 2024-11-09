@@ -97,6 +97,11 @@ function receivePackage(packages, package)
             break
         end
     end
+
+    if not packageValid then
+        return
+    end
+
     print("Installing package " .. package["package"] .. " from " .. package['hostname'])
 
     if not packageValid then
