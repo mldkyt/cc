@@ -1,15 +1,21 @@
 
+function getIGT()
+    local hour = os.time()
+    local minute = hour % 1
+    minute = minute * 60
+
+    return string.format("%02d", hour) .. ":" .. string.format("%02d", minute)
+end
+
 local mon = peripheral.wrap("back")
 function printTime()
     while true do
-        local time = os.time()
-        local hours = math.floor(time % 86400 / 3600)
-        local minutes = math.floor((time % 3600) / 60)
+        local time = getIGT()
 
         mon.setCursorPos(1, 1)
         mon.write("IGT:")
         mon.setCursorPos(1, 2)
-        mon.write(string.format("%02d:%02d", hours, minutes))
+        mon.write(time)
 
         os.sleep(0.5)
     end
