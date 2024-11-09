@@ -70,6 +70,9 @@ function getIGT()
     return string.format("%02d", hour) .. ":" .. string.format("%02d", minute)
 end
 
+list = {}
+
+
 local mon = peripheral.wrap("top")
 local y, x = mon.getSize()
 
@@ -77,69 +80,79 @@ mon.clear()
 mon.update()
 
 local j = 1
+local data = nil
 
-while true do
-    j = j + 1
-    if j > 10 then
-        j = 1
+function fetchData()
+    while true do
         mon.clear()
         mon.update()
         mon.setCursorPos(x / 2 - #"Refreshing..." / 2, y / 2 - 1)
         mon.write("Refreshing...")
         mon.update()
 
-        a = http.get("https://chb.mldchan.dev/api/get", {
+        local response = http.get("https://chb.mldchan.dev/api/get", {
             ["Accept"] = "application/json",
             ["User-Agent"] = "CutieHangout/1.0"
         })
-        
-        a = json.decode(a.readAll())
+
+        data = json.decode(response.readAll())
 
         mon.clear()
         mon.update()
+        
+        os.sleep(5) -- Fetch every 5 seconds
     end
-
-    local onlinePlayers = 0
-    local offlinePlayers = 0
-
-    local i = 1
-    for k, v in ipairs(a['modded']) do
-        if v['online'] then
-            i = i + 1
-            mon.setCursorPos(2, i + 2)
-            mon.write('   ' .. truncateString(v['name'], 10) .. " - " .. formatTime(v['playtime']))
-            onlinePlayers = onlinePlayers + 1
-        end
-    end
-
-    mon.setCursorPos(1, 3)
-    mon.write("Online Players - " .. onlinePlayers)
-
-    local i = 1
-    for k, v in ipairs(a['modded']) do
-        if not v['online'] then
-            i = i + 1
-            if i + 3 + onlinePlayers < y then
-                mon.setCursorPos(2, i + 3 + onlinePlayers)
-                mon.write('   ' .. truncateString(v['name'], 10) .. " - " .. formatTime(v['playtime']))
-            end
-            offlinePlayers = offlinePlayers + 1
-        end
-    end
-
-    mon.setCursorPos(1, onlinePlayers + 4)
-    mon.write("Offline Players - " .. offlinePlayers)
-
-    mon.setCursorPos(18, 1)
-    mon.write(onlinePlayers .. " online players")
-    mon.setCursorPos(18, 2)
-    mon.write(offlinePlayers .. " offline players")
-
-    local str = "IGT " .. getIGT() .. " IRL " .. getRealTime()
-    mon.setCursorPos(x - #str, y)
-    mon.write(str)
-
-    mon.update()
-
-    os.sleep(0.5)
 end
+
+function renderData()
+    local j = 1
+    while true do
+        if data then
+            local onlinePlayers = 0
+            local offlinePlayers = 0
+
+            local i = 1
+            for k, v in ipairs(data['modded']) do
+                if v['online'] then
+                    i = i + 1
+                    mon.setCursorPos(2, i + 2)
+                    mon.write('   ' .. truncateString(v['name'], 10) .. " - " .. formatTime(v['playtime']))
+                    onlinePlayers = onlinePlayers + 1
+                end
+            end
+
+            mon.setCursorPos(1, 3)
+            mon.write("Online Players - " .. onlinePlayers)
+
+            local i = 1
+            for k, v in ipairs(data['modded']) do
+                if not v['online'] then
+                    i = i + 1
+                    if i + 3 + onlinePlayers < y then
+                        mon.setCursorPos(2, i + 3 + onlinePlayers)
+                        mon.write('   ' .. truncateString(v['name'], 10) .. " - " .. formatTime(v['playtime']))
+                    end
+                    offlinePlayers = offlinePlayers + 1
+                end
+            end
+
+            mon.setCursorPos(1, onlinePlayers + 4)
+            mon.write("Offline Players - " .. offlinePlayers)
+
+            mon.setCursorPos(18, 1)
+            mon.write(onlinePlayers .. " online players")
+            mon.setCursorPos(18, 2)
+            mon.write(offlinePlayers .. " offline players")
+
+            local str = "IGT " .. getIGT() .. " IRL " .. getRealTime()
+            mon.setCursorPos(x - #str, y)
+            mon.write(str)
+
+            mon.update()
+        end
+        os.sleep(0.5)
+    end
+end
+
+print("Starting playtime monitor :3")
+parallel.waitForAny(fetchData, renderData)
