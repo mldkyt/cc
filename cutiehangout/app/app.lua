@@ -111,7 +111,7 @@ function receivePackage(packages, package)
     local pc, packageCode = rednet.receive('app', 0.1)
 
     if not fs.exists("/bin") then
-        fs.mkdir("/bin")
+        fs.makeDir("/bin")
     end
 
     writeFile("/bin/" .. package['package'], packageCode)
