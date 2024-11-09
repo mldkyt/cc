@@ -1,11 +1,10 @@
 
 local mon = peripheral.wrap("back")
-
 function printTime()
     while true do
         local time = os.time()
         local hours = math.floor(time % 86400 / 3600)
-        local minutes = math.floor(time % 3600 / 60)
+        local minutes = math.floor((time % 3600) / 60)
 
         mon.setCursorPos(1, 1)
         mon.write("IGT:")
