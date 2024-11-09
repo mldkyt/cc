@@ -64,6 +64,12 @@ function fetchPackages()
                         hostname = hostname,
                         package = package
                     })
+                    print("inserting package")
+                    print({
+                        remote = remote,
+                        hostname = hostname,
+                        package = package
+                    })
                     thisRemote = thisRemote + 1
                 else
                     break
