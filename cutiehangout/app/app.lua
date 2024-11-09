@@ -59,7 +59,11 @@ function fetchPackages()
             while true do
                 local _, package = rednet.receive("app", 0.05)
                 if package ~= nil then
-                    table.insert(packages, package)
+                    table.insert(packages, {
+                        remote = remote,
+                        hostname = hostname,
+                        package = package
+                    })
                     thisRemote = thisRemote + 1
                 else
                     break
@@ -81,6 +85,31 @@ function printUsage()
     print("    installed - Shows installed applications")
 end
 
+function receivePackage(packages, package)
+    -- Check if package is valid
+    packageValid = false
+
+    for k, v in ipairs(packages) do
+        if v['package'] == package then
+            packageValid = true
+        end
+    end
+
+    if not packageValid then
+        print("Error downloading " .. package .. ": Not found")
+        return
+    end
+
+    rednet.send(package['remote'], 'package', 'app')
+    os.sleep(0.05)
+    rednet.send(package['remote'], package['package'], 'app')
+
+    local pc, packageCode = rednet.receive('app', 0.1)
+
+    print("Downloaded package code, as a test, printing to log")
+    print(packageCode)
+end
+
 -- MAIN CODE
 
 if not connectRednet() then
@@ -100,7 +129,7 @@ if #parameters == 0 then
 elseif #parameters == 1 then
     if parameters[1] == "available" then
         for k, v in ipairs(packages) do
-            print(v)
+            print(v['package'])
         end
     elseif parameters[1] == "installed" then
         print("To do!")
@@ -109,7 +138,7 @@ elseif #parameters == 1 then
     end
 elseif #parameters == 2 then
     if parameters[1] == "install" then
-        print("Install", parameters[2])
+        receivePackage(packages, parameters[2])
     elseif parameters[1] == "remove" then
         print("Remove", parameters[2])
     end
