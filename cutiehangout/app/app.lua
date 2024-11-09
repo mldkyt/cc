@@ -86,6 +86,7 @@ function printUsage()
 end
 
 function receivePackage(packages, package)
+    print("Checking for " .. package .. " validity...")
     -- Check if package is valid
     packageValid = false
 
@@ -96,6 +97,7 @@ function receivePackage(packages, package)
             break
         end
     end
+    print("Installing package " .. package["package"] .. " from " .. package['hostname'])
 
     if not packageValid then
         print("Error downloading " .. package .. ": Not found")
@@ -108,8 +110,13 @@ function receivePackage(packages, package)
 
     local pc, packageCode = rednet.receive('app', 0.1)
 
-    print("Downloaded package code, as a test, printing to log")
-    print(packageCode)
+    if not fs.exists("/bin") then
+        fs.mkdir("/bin")
+    end
+
+    writeFile("/bin/" .. package['package'], packageCode)
+
+    print("Installed package " .. package["package"] .. " from " .. package["hostname"] .. " successfully.")
 end
 
 -- MAIN CODE
