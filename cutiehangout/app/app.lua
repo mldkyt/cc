@@ -70,7 +70,7 @@ function fetchApps()
                 end
             end
 
-            print(thisRemote .. " packages")
+            print(thisRemote .. " apps")
         end
     end
 
@@ -81,17 +81,17 @@ function printUsage()
     print("APP usage:")
     print("    install <app> - Installs an app to the computer")
     print("    remove <app> - Removes an app from the computer")
-    print("    available - Lists available packages for download")
+    print("    available - Lists available apps for download")
     print("    installed - Shows installed applications")
 end
 
 function downloadApp(apps, app)
     print("Checking for " .. app .. " validity...")
-    -- Check if package is valid
+    -- Check if app is valid
     appValid = false
 
     for k, v in ipairs(apps) do
-        if v['package'] == app then
+        if v['app'] == app then
             appValid = true
             app = v
             break
@@ -137,7 +137,7 @@ function deleteApp(app)
 end
 
 function listInstalledApps(apps)
-    print("Listing installed packages...")
+    print("Listing installed apps...")
 
     for k, v in ipairs(apps) do
         if fs.exists("/bin/" .. v['app']) then
