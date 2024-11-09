@@ -11,6 +11,8 @@ function printTime()
         mon.write("IGT:")
         mon.setCursorPos(1, 2)
         mon.write(string.format("%02d:%02d", hours, minutes))
+
+        os.sleep(0.5)
     end
 end
 
