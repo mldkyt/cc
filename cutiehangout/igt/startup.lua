@@ -28,7 +28,7 @@ function downloadFile(f, l)
     print(f .. ": done updating.")
 end
 
-ownloadFile("startup", "https://git.mldchan.dev/mld/cc/-/raw/main/cutiehangout/igt/startup.lua?ref_type=heads&inline=false")
+downloadFile("startup", "https://git.mldchan.dev/mld/cc/-/raw/main/cutiehangout/igt/startup.lua?ref_type=heads&inline=false")
 downloadFile("main", "https://git.mldchan.dev/mld/cc/-/raw/main/cutiehangout/igt/main.lua?ref_type=heads&inline=false")
 
 while true do
