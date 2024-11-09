@@ -119,6 +119,17 @@ function receivePackage(packages, package)
     print("Installed package " .. package["package"] .. " from " .. package["hostname"] .. " successfully.")
 end
 
+function deletePackage(package)
+    print("Removing package " .. package .. "...")
+
+    if fs.exists("/bin/" .. package) then
+        fs.delete("/bin/" .. package)
+        print("Package " .. package .. " was found and removed.")
+    else
+        print("Package " .. package .. " was not found.")
+    end
+end
+
 -- MAIN CODE
 
 if not connectRednet() then
@@ -149,6 +160,6 @@ elseif #parameters == 2 then
     if parameters[1] == "install" then
         receivePackage(packages, parameters[2])
     elseif parameters[1] == "remove" then
-        print("Remove", parameters[2])
+        deletePackage(parameters[2])
     end
 end
