@@ -1,4 +1,3 @@
-
 VERSION = "1.0"
 
 function readFile(filename)
@@ -21,7 +20,8 @@ end
 
 if not fs.exists("/opt/app/disclaimer_shown") then
     print("APP is based on a decentralized network of app servers.")
-    print("By continuing, app will seek out to the network to find any app servers to download from. This might take upwards of a few seconds.")
+    print(
+        "By continuing, app will seek out to the network to find any app servers to download from. This might take upwards of a few seconds.")
     read()
     writeFile("/opt/app/disclaimer_shown", "true")
 end
@@ -41,9 +41,9 @@ end
 
 function fetchPackages()
     term.write("Searching for app servers... ")
-    local appServers = {rednet.lookup("app")}
+    local appServers = { rednet.lookup("app") }
     print(#appServers .. " found")
-    
+
     local packages = {}
 
     for _, remote in ipairs(appServers) do
@@ -73,6 +73,14 @@ function fetchPackages()
     return packages
 end
 
+function printUsage()
+    print("APP usage:")
+    print("    install <package> - Installs an app to the computer")
+    print("    remove <package> - Removes an app from the computer")
+    print("    available - Lists available packages for download")
+    print("    installed - Shows installed applications")
+end
+
 -- MAIN CODE
 
 if not connectRednet() then
@@ -85,3 +93,24 @@ print("APP version " .. VERSION)
 local packages = fetchPackages()
 print("A total of " .. #packages .. " packages was found on the servers.")
 
+local parameters = { ... }
+
+if #parameters == 0 then
+    printUsage()
+elseif #parameters == 1 then
+    if parameters[1] == "available" then
+        for k, v in ipairs(packages) do
+            print(v)
+        end
+    elseif parameters[1] == "installed" then
+        print("To do!")
+    else
+        printUsage()
+    end
+elseif #parameters == 2 then
+    if parameters[1] == "install" then
+        print("Install", parameters[2])
+    elseif parameters[1] == "remove" then
+        print("Remove", parameters[2])
+    end
+end
