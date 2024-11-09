@@ -64,12 +64,6 @@ function fetchPackages()
                         hostname = hostname,
                         package = package
                     })
-                    print("inserting package")
-                    print({
-                        remote = remote,
-                        hostname = hostname,
-                        package = package
-                    })
                     thisRemote = thisRemote + 1
                 else
                     break
@@ -98,6 +92,8 @@ function receivePackage(packages, package)
     for k, v in ipairs(packages) do
         if v['package'] == package then
             packageValid = true
+            package = v
+            break
         end
     end
 
