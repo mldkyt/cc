@@ -1,5 +1,5 @@
 -- ComputerCraftScripts
--- Copyright (C) 2024  Akatsuki
+-- Copyright (C) 2024  mldchan
 
 -- This program is free software: you can redistribute it and/or modify it under the terms of the 
 -- GNU General Public License as published by the Free Software Foundation, either version 3 of 
@@ -25,16 +25,16 @@ message = encrypt(config.aesPassword, message)
 
 rednet.open(config.modemSide)
 
-local host = rednet.lookup("Akatsuki", "ticketserver")
+local host = rednet.lookup("mldchan", "ticketserver")
 
 if host == nil then
     print("Ticket server not found!")
     return
 end
 
-rednet.send(host, message, "Akatsuki")
+rednet.send(host, message, "mldchan")
 
-local computer, message = rednet.receive("Akatsuki", 1)
+local computer, message = rednet.receive("mldchan", 1)
 
 if computer == nil then
     print("Ticket is not valid!")

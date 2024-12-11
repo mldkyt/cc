@@ -1,5 +1,5 @@
 -- ComputerCraftScripts
--- Copyright (C) 2024  Akatsuki
+-- Copyright (C) 2024  mldchan
 
 -- This program is free software: you can redistribute it and/or modify it under the terms of the
 -- GNU General Public License as published by the Free Software Foundation, either version 3 of
@@ -21,7 +21,7 @@ local json = require("json")
 local config = json.decode(readFile("config.json"))
 
 rednet.open(MODEM_SIDE)
-local ticketServer = rednet.lookup("Akatsuki", "ticketserver")
+local ticketServer = rednet.lookup("mldchan", "ticketserver")
 
 if ticketServer == nil then
 	print("Ticket server not found!")
@@ -33,8 +33,8 @@ local name = prompt("Enter your name: ")
 message1 = json.encode({ type = "generateticket", name = name })
 message1 = encrypt(config.aesPassword, message1)
 
-rednet.send(ticketServer, message1, "Akatsuki")
-local computer, message = rednet.receive("Akatsuki", 1)
+rednet.send(ticketServer, message1, "mldchan")
+local computer, message = rednet.receive("mldchan", 1)
 if computer == nil then
 	print("Ticket server did not respond!")
 	return

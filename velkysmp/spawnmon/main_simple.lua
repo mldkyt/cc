@@ -1,5 +1,5 @@
 -- ComputerCraftScripts
--- Copyright (C) 2024  Akatsuki
+-- Copyright (C) 2024  mldchan
 
 -- This program is free software: you can redistribute it and/or modify it under the terms of the
 -- GNU General Public License as published by the Free Software Foundation, either version 3 of
@@ -56,7 +56,7 @@ function drawMainScreen()
 
     mon.clear()
     mon.setCursorPos(1, 1)
-    mon.write("Akatsuki's VelkySMP monitor - since 2024/02/25!")
+    mon.write("mldchan's VelkySMP monitor - since 2024/02/25!")
 
     mon.setCursorPos(1, 2)
     mon.write(
@@ -89,7 +89,7 @@ function drawMainScreen()
     mon.setCursorPos(1, mon_height - 2)
     mon.write("mldchan's VelkySMP Status Monitor v" .. VERSION .. ": CC edition")
     mon.setCursorPos(1, mon_height - 1)
-    mon.write("Check her out on mldkyt.nekoweb.org and sign the guestbook at akatsuki.atabook.org!")
+    mon.write("Check her out on mldkyt.nekoweb.org and sign the guestbook at mldchan.atabook.org!")
     mon.setCursorPos(1, mon_height)
     mon.write("The online version of this software is on velkysmp-mon.vercel.app")
 end

@@ -1,5 +1,5 @@
 -- ComputerCraftScripts: Guestbook Script
--- Copyright (C) 2024  Akatsuki
+-- Copyright (C) 2024  mldchan
 -- This program is free software: you can redistribute it and/or modify it under the terms of the
 -- GNU General Public License as published by the Free Software Foundation, either version 3 of
 -- the License, or (at your option) any later version.
@@ -9,7 +9,7 @@
 -- You should have received a copy of the GNU General Public License along with this program.
 -- If not, see <https://www.gnu.org/licenses/>.
 
-print("Akatsuki's Guestbook (Online Version) has started")
+print("mldchan's Guestbook (Online Version) has started")
 
 require("utils")
 local json = require("json")
@@ -56,7 +56,7 @@ function drawScreen()
         minutes = string.format("%02d", minutes)
 
         mon.setCursorPos(1, 1)
-        mon.write("Akatsuki's guestbook - " .. tostring(year) .. "/" ..
+        mon.write("mldchan's guestbook - " .. tostring(year) .. "/" ..
             tostring(month) .. "/" .. tostring(day) .. " " ..
             tostring(hours) .. ":" .. tostring(minutes) .. " IGT")
 
@@ -113,7 +113,7 @@ function drawScreen()
         mon.clear()
 
         mon.setCursorPos(2, 10)
-        mon.write("Sending your entry to Akatsuki's API server...")
+        mon.write("Sending your entry to mldchan's API server...")
         table.insert(guestbookEntries, { title = playerName, content = content })
 
         request = http.post({
