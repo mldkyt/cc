@@ -1,5 +1,5 @@
 -- ComputerCraftScripts
--- Copyright (C) 2024  Akatsuki
+-- Copyright (C) 2024  mldchan
 
 -- This program is free software: you can redistribute it and/or modify it under the terms of the 
 -- GNU General Public License as published by the Free Software Foundation, either version 3 of 
@@ -103,7 +103,7 @@ http.post(config.webhook, json.encode({
     ["Content-Type"] = "application/json"
 })
 
-prettyWrite(term, "Akatsuki was alerted. Please don't try this again.")
+prettyWrite(term, "mldchan was alerted. Please don't try this again.")
 print()
 prettyWrite(term, "Unless you just wanted to update the program. In that case, please wait a moment.")
 print()

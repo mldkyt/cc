@@ -1,5 +1,5 @@
 -- ComputerCraftScripts
--- Copyright (C) 2024  Akatsuki
+-- Copyright (C) 2024  mldchan
 
 -- This program is free software: you can redistribute it and/or modify it under the terms of the
 -- GNU General Public License as published by the Free Software Foundation, either version 3 of
@@ -11,7 +11,6 @@
 
 -- You should have received a copy of the GNU General Public License along with this program.
 -- If not, see <https://www.gnu.org/licenses/>.
-
 
 VERSION = "1.1"
 
@@ -29,13 +28,109 @@ end
 
 local mon_width, mon_height = mon.getSize()
 
+while true do
+    mon.clear()
+    mon.setCursorPos(2, 2)
+    mon.write("Deprecation Warning")
+    mon.setCursorPos(1, 4)
+    prettyWrite(mon, "This software is deprecated and has stopped working on 2024/10/31. This software's servers have shut down. Example data from recent will be displayed.")
+    mon.setCursorPos(2, mon_height - 2)
+    mon.write("[ Continue ]")
+    
+    local event, p1, p2, p3, p4, p5 = os.pullEvent()
+    print(event, p2, p3)
+    if event == "monitor_touch" and p2 > 2 and p2 < 14 and p3 == mon_height - 2 then
+        break
+    end
+end
+
+
 local has_loaded = false
-local api_parsed = {}
+local api_parsed = {
+    motd = "VelkySMP status monitor demo",
+    online = 1,
+    max = 20,
+    ping = 123,
+    players = {
+        {
+            name = "mldchan",
+            humantime = "2d 14h 43m",
+            online = true,
+            profileStyle = {
+                ccColor = "white"
+            }
+        },
+        {
+            name = "gimsmorf",
+            humantime = "4w 1d 12h 16m",
+            online = false,
+            profileStyle = {
+                ccColor = "white"
+            }
+        },
+        {
+            name = "norm_selling",
+            humantime = "3w 9h 41m",
+            online = false,
+            profileStyle = {
+                ccColor = "white"
+            }
+        },
+        {
+            name = "Backlashshadow",
+            humantime = "1w 3d 17h 53m",
+            online = false,
+            profileStyle = {
+                ccColor = "white"
+            }
+        },
+        {
+            name = "Typera",
+            humantime = "1w 2d 22h 18m",
+            online = false,
+            profileStyle = {
+                ccColor = "white"
+            }
+        },
+        {
+            name = "RoofWithAFloor",
+            humantime = "1w 2d 14h 44m",
+            online = false,
+            profileStyle = {
+                ccColor = "white"
+            }
+        },
+        {
+            name = "Mischevio",
+            humantime = "1w 2d 12h 31m",
+            online = false,
+            profileStyle = {
+                ccColor = "white"
+            }
+        },
+        {
+            name = "Beaver0084",
+            humantime = "1w 1d 12h 31m",
+            online = false,
+            profileStyle = {
+                ccColor = "white"
+            }
+        },
+        {
+            name = "xRieri",
+            humantime = "1w 1d 6h 41m",
+            online = false,
+            profileStyle = {
+                ccColor = "white"
+            }
+        }
+    }
+}
 
 function drawMainScreen()
     if not has_loaded then
-        local api_content = http.get("https://velkysmp-mon.vercel.app/api/get").readAll()
-        api_parsed = json.decode(api_content)
+        -- local api_content = http.get("https://velkysmp-mon.vercel.app/api/get").readAll()
+        -- api_parsed = json.decode(api_content)
         has_loaded = true
     end
     local api_sorted = {}
@@ -56,7 +151,7 @@ function drawMainScreen()
 
     mon.clear()
     mon.setCursorPos(1, 1)
-    prettyWrite(mon, "Akatsuki's VelkySMP monitor - since 2024/02/25!")
+    prettyWrite(mon, "mldchan's VelkySMP monitor - since 2024/02/25!")
 
     local items_count = mon_height - 3
     for k, v in ipairs(api_sorted) do
@@ -90,7 +185,7 @@ end
 mon.clear()
 
 mon.setCursorPos(1, 1)
-mon.write("Akatsuki's VelkySMP monitor - since 2024/02/25!")
+mon.write("mldchan's VelkySMP monitor - since 2024/02/25!")
 
 mon.clear()
 
@@ -137,8 +232,8 @@ while true do
         timer = os.startTimer(30)
     elseif event == "timer" and p1 == timer2 then
         print("Full refresh after 1 hour")
-        local api_content = http.get("https://velkysmp-mon.vercel.app/api/get").readAll()
-        api_parsed = json.decode(api_content)
+        -- local api_content = http.get("https://velkysmp-mon.vercel.app/api/get").readAll()
+        -- api_parsed = json.decode(api_content)
         drawMainScreen()
         timer2 = os.startTimer(3600)
     end

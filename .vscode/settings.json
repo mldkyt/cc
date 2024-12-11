@@ -41,5 +41,12 @@
     "Lua.diagnostics.disable": [
         "undefined-field",
         "deprecated"
+    ],
+    "gitlens.remotes": [
+        {
+            "domain": "git.mldchan.dev",
+            "type": "GitLab",
+            "name": "mldchan GitLab",
+        }
     ]
 }

@@ -1,5 +1,5 @@
 -- ComputerCraftScripts
--- Copyright (C) 2024  Akatsuki
+-- Copyright (C) 2024  mldchan
 
 -- This program is free software: you can redistribute it and/or modify it under the terms of the
 -- GNU General Public License as published by the Free Software Foundation, either version 3 of
@@ -23,10 +23,10 @@ if not fs.exists("data.json") then
 end
 
 rednet.open(config.modemSide)
-rednet.host("Akatsuki", "ticketserver")
+rednet.host("mldchan", "ticketserver")
 
 while true do
-	computer, message = rednet.receive("Akatsuki", 1)
+	computer, message = rednet.receive("mldchan", 1)
 	if computer ~= nil then
 		message = decrypt(config.aesPassword, message)
 		if message ~= nil then
@@ -41,7 +41,7 @@ while true do
 				writeFile("data.json", json.encode(data))
 				message = json.encode({ type = "ticketgenerated", ticket = ticket.ticket })
 				message = encrypt(config.aesPassword, message)
-				rednet.send(computer, message, "Akatsuki")
+				rednet.send(computer, message, "mldchan")
 			elseif message.type == "verifyticket" then
 				local data = json.decode(readFile("data.json"))
 				for k, v in ipairs(data) do
@@ -49,7 +49,7 @@ while true do
 						message = { type = "ticketverified", name = v.name }
 						message = json.encode(message)
 						message = encrypt(config.aesPassword, message)
-						rednet.send(computer, message, "Akatsuki")
+						rednet.send(computer, message, "mldchan")
 						break
 					end
 				end

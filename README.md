@@ -1,3 +1,3 @@
 # ComputerCraftScripts
 
-ComputerCraft scripts for Akatsuki's things
+ComputerCraft scripts for mldchan's things

@@ -1,5 +1,5 @@
 -- ComputerCraftScripts
--- Copyright (C) 2024  Akatsuki
+-- Copyright (C) 2024  mldchan
 
 -- This program is free software: you can redistribute it and/or modify it under the terms of the
 -- GNU General Public License as published by the Free Software Foundation, either version 3 of
@@ -15,16 +15,16 @@
 con = peripheral.wrap("back")
 
 function updateLib()
-  fs.delete("akatsuki.lua")
-  shell.run("wget https://mldkyt.nekoweb.org/cc/velkysmp/player/akatsuki.lua")
+  fs.delete("mldchan.lua")
+  shell.run("wget https://mldkyt.nekoweb.org/cc/velkysmp/player/mldchan.lua")
   fs.delete("startup.lua")
   shell.run("wget https://mldkyt.nekoweb.org/cc/velkysmp/player/startup.lua")
 end
 
-con.tell("Starting AkatsukiOS...")
+con.tell("Starting mldchanOS...")
 updateLib()
 
-require("akatsuki")
+require("mldchan")
 
 con.tell("Checking for updates and downloading them...")
 checkForUpdates()
