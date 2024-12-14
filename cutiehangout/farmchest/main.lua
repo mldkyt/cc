@@ -32,7 +32,7 @@ end
 function getSeedsInChest()
     local capacity = seedsInChest.size() * 64
     local usage = 0
-    for k, v in ipairs(seedsInChest.list()) do
+    for k, v in pairs(seedsInChest.list()) do
         usage = usage + v.count
     end
 
@@ -44,7 +44,7 @@ end
 function getSeedsOutChest()
     local capacity = seedsOutChest.size() * 64
     local usage = 0
-    for k, v in ipairs(seedsOutChest.list()) do
+    for k, v in pairs(seedsOutChest.list()) do
         usage = usage + v.count
     end
 
@@ -56,7 +56,7 @@ end
 function getWheatChest()
     local capacity = wheatChest.size() * 64
     local usage = 0
-    for k, v in ipairs(wheatChest.list()) do
+    for k, v in pairs(wheatChest.list()) do
         usage = usage + v.count
     end
 
