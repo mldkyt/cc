@@ -98,6 +98,7 @@ function renderData()
     local j = 1
     while true do
         if data then
+            local w, h = mon.getSize()
             local onlinePlayers = 0
             local offlinePlayers = 0
 
@@ -106,7 +107,7 @@ function renderData()
                 if v['online'] then
                     i = i + 1
                     mon.setCursorPos(2, i + 2)
-                    mon.write('   ' .. truncateString(v['name'], 10) .. " - " .. formatTime(v['playtime']))
+                    mon.write('   ' .. truncateString(v['name'], 16) .. " - " .. formatTime(v['playtime']))
                     onlinePlayers = onlinePlayers + 1
                 end
             end
@@ -120,7 +121,7 @@ function renderData()
                     i = i + 1
                     if i + 3 + onlinePlayers < y then
                         mon.setCursorPos(2, i + 3 + onlinePlayers)
-                        mon.write('   ' .. truncateString(v['name'], 10) .. " - " .. formatTime(v['playtime']))
+                        mon.write('   ' .. truncateString(v['name'], 16) .. " - " .. formatTime(v['playtime']))
                     end
                     offlinePlayers = offlinePlayers + 1
                 end
@@ -129,11 +130,12 @@ function renderData()
             mon.setCursorPos(1, onlinePlayers + 4)
             mon.write("Offline Players - " .. offlinePlayers)
 
-            mon.setCursorPos(18, 1)
-            mon.write(onlinePlayers .. " online players")
-            mon.setCursorPos(18, 2)
-            mon.write(offlinePlayers .. " offline players")
-
+            local str = onlinePlayers .. " online players"
+            mon.setCursorPos(w - #str, 1)
+            mon.write(str)
+            local str = offlinePlayers .. " offline players"
+            mon.setCursorPos(w - #str, 2)
+            mon.write(str)
             local str = "IGT " .. getIGT() .. " IRL " .. getRealTime()
             mon.setCursorPos(x - #str, y)
             mon.write(str)
