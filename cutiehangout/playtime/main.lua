@@ -73,11 +73,10 @@ end
 list = {}
 
 
-local mon = peripheral.wrap("top")
+local mon = peripheral.wrap("monitor_2")
 local y, x = mon.getSize()
 
 mon.clear()
-mon.update()
 
 local j = 1
 local data = nil
@@ -138,8 +137,6 @@ function renderData()
             local str = "IGT " .. getIGT() .. " IRL " .. getRealTime()
             mon.setCursorPos(x - #str, y)
             mon.write(str)
-
-            mon.update()
         end
         os.sleep(0.5)
     end
