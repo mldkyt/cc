@@ -28,8 +28,8 @@ function downloadFile(f, l)
     print(f .. ": done updating.")
 end
 
-downloadFile("startup", "https://git.mldchan.dev/mld/cc/-/raw/main/cutiehangout/igt/startup.lua?ref_type=heads&inline=false")
-downloadFile("main", "https://git.mldchan.dev/mld/cc/-/raw/main/cutiehangout/igt/main.lua?ref_type=heads&inline=false")
+downloadFile("startup", "https://git.mldchan.dev/mld/cc/-/raw/main/cutiehangout/basedisplay/startup.lua?ref_type=heads&inline=false")
+downloadFile("main", "https://git.mldchan.dev/mld/cc/-/raw/main/cutiehangout/basedisplay/main.lua?ref_type=heads&inline=false")
 
 while true do
     os.sleep(0.5)
