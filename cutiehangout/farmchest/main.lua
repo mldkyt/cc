@@ -13,6 +13,22 @@ inChestPercentage = 0
 outChestPercentage = 0
 wheatChestPercentage = 0
 
+function getRealTime()
+    local hour = os.time("utc")
+    local minute = hour % 1
+    minute = minute * 60
+
+    return string.format("%02d", hour) .. ":" .. string.format("%02d", minute)
+end
+
+function getIGT()
+    local hour = os.time()
+    local minute = hour % 1
+    minute = minute * 60
+
+    return string.format("%02d", hour) .. ":" .. string.format("%02d", minute)
+end
+
 function getSeedsInChest()
     local capacity = seedsInChest.size() * 64
     local usage = 0
@@ -96,7 +112,7 @@ function drawChestData()
             monitor.setTextColor(colors.green)
         end
         monitor.write(outChestString)
-        monitor.setTextColor(colors.white)
+        monitor.setTextColor(colors.black)
     
         -- Wheat Chest
         monitor.setCursorPos(1, 9)
@@ -110,7 +126,11 @@ function drawChestData()
             monitor.setTextColor(colors.green)
         end
         monitor.write(wheatChestString)
-        monitor.setTextColor(colors.white)
+        monitor.setTextColor(colors.black)
+
+        local w, h = monitor.getSize()
+        monitor.setCursorPos(1, h)
+        monitor.write("IGT ".. getIGT() .. " IRL " .. getRealTime())
     
         os.sleep(0.1)
     end    
