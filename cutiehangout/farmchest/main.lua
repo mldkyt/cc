@@ -9,6 +9,10 @@ inChestString = ""
 outChestString = ""
 wheatChestString = ""
 
+inChestPercentage = 0
+outChestPercentage = 0
+wheatChestPercentage = 0
+
 function getSeedsInChest()
     local capacity = seedsInChest.size() * 64
     local usage = 0
@@ -16,9 +20,9 @@ function getSeedsInChest()
         usage = usage + v.count
     end
 
-    local percentage = (usage / capacity) * 100
+    inChestPercentage = (usage / capacity) * 100
 
-    return string.format("%.0f/%.0f (%.2f)", usage, capacity, percentage)
+    return string.format("%.0f/%.0f (%.2f)", usage, capacity, inChestPercentage)
 end
 
 function getSeedsOutChest()
@@ -28,9 +32,9 @@ function getSeedsOutChest()
         usage = usage + v.count
     end
 
-    local percentage = (usage / capacity) * 100
+    outChestPercentage = (usage / capacity) * 100
 
-    return string.format("%.0f/%.0f (%.2f)", usage, capacity, percentage)
+    return string.format("%.0f/%.0f (%.2f)", usage, capacity, outChestPercentage)
 end
 
 function getWheatChest()
@@ -40,9 +44,9 @@ function getWheatChest()
         usage = usage + v.count
     end
 
-    local percentage = (usage / capacity) * 100
+    wheatChestPercentage = (usage / capacity) * 100
 
-    return string.format("%.0f/%.0f (%.2f)", usage, capacity, percentage)
+    return string.format("%.0f/%.0f (%.2f)", usage, capacity, wheatChestPercentage)
 end
 
 
@@ -70,19 +74,43 @@ function drawChestData()
         monitor.setCursorPos(1, 3)
         monitor.write("Seeds in chest")
         monitor.setCursorPos(2, 4)
+        if inChestPercentage > 90 then
+            monitor.setTextColor(colors.red)
+        elseif inChestPercentage > 60 then
+            monitor.setTextColor(colors.yellow)
+        elseif inChestPercentage < 20 then
+            monitor.setTextColor(colors.green)
+        end
         monitor.write(inChestString)
+        monitor.setTextColor(colors.black)
     
         -- Seeds out Chest
         monitor.setCursorPos(1, 6)
         monitor.write("Seeds out chest")
         monitor.setCursorPos(2, 7)
+        if outChestPercentage > 90 then
+            monitor.setTextColor(colors.red)
+        elseif outChestPercentage > 60 then
+            monitor.setTextColor(colors.yellow)
+        elseif outChestPercentage < 20 then
+            monitor.setTextColor(colors.green)
+        end
         monitor.write(outChestString)
+        monitor.setTextColor(colors.white)
     
         -- Wheat Chest
         monitor.setCursorPos(1, 9)
         monitor.write("Wheat chest")
         monitor.setCursorPos(2, 10)
+        if wheatChestPercentage > 90 then
+            monitor.setTextColor(colors.red)
+        elseif wheatChestPercentage > 60 then
+            monitor.setTextColor(colors.yellow)
+        elseif wheatChestPercentage < 20 then
+            monitor.setTextColor(colors.green)
+        end
         monitor.write(wheatChestString)
+        monitor.setTextColor(colors.white)
     
         os.sleep(0.1)
     end    
