@@ -1,4 +1,6 @@
 
+count = 0
+
 local function main()
     local flipped = false
     while true do
@@ -23,6 +25,14 @@ local function main()
         end
 
         turtle.placeDown()
+
+        if count > 3 then
+            turtle.suckDown()
+            count = 0
+        end
+
+        count = count + 1
+
         os.sleep(0.05)
     end
 end
