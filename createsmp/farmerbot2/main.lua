@@ -23,7 +23,12 @@ local function main()
         end
 
         turtle.placeDown()
-        turtle.suckDown()
+
+        while true do
+            if not turtle.suckDown() then
+                break
+            end
+        end
 
         os.sleep(0.05)
     end
