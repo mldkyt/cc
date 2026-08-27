@@ -63,7 +63,7 @@ end
 
 function draw()
 	monitor.clear()
-	monitor.setCursorPos(1, 1)	
+	monitor.setCursorPos(1, 1)
 
 	if screen == "main" then
 		prettyPrint("Welcome to mldkyt's Minecraft Server!") 
@@ -72,6 +72,7 @@ function draw()
 	end
 	if screen == "graves" then
 		addButton("Back", "back")
+		monitor.setCursorPos(1, 3)
 		prettyPrint("The graves mod is very self explanatory. When you die, a grave will be placed on your location. Graves are protected from any damage, and can be picked up either by breaking the grave, or shift-right clicking it.")
 		prettyPrint("Players also get a grave compass on death to quickly find their death location. All players have 15 minutes to locate and pick up their items before they drop, and then an additional 3 minutes if you consider vanilla item despawns.")
 	end
