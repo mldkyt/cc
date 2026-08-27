@@ -59,6 +59,9 @@ function handleButtonClick(id)
 	if id == "back" then
 		screen = "main"
 	end
+	if id == "gp" then
+		screen = "grief"
+	end
 end
 
 function draw()
@@ -82,8 +85,8 @@ function draw()
 		prettyPrint("Players also get a grave compass on death to quickly find their death location. All players have 15 minutes to locate and pick up their items before they drop, and then an additional 3 minutes if you consider vanilla item despawns.")
 	end
 	if screen == "grief" then
-		prettyPrint("Grief Prevention")
-		prettyPrint("")
+		addButton("Back", "back")
+		monitor.setCursorPos(1, 3)
 		prettyPrint("Grief Prevention is done using a mod named FLAN.")
 		prettyPrint("")
 		prettyPrint("You can claim land using a golden shovel, just like previously. All players start with 2000 claimable blocks, and more get added as you play. Claim as much land as you want but don't abuse this.")
