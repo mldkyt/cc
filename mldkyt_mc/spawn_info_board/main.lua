@@ -45,10 +45,10 @@ function addButton(label, id)
 	monitor.setCursorPos(1, y + 1)
 
 	table.insert(buttons, {
-		["x"] = x,
-		["y"] = y,
-		["w"] = string.len(label) + 2,
-		["id"] = id
+		x = x,
+		y = y,
+		w = string.len(label) + 2,
+	    id = id
 	})
 end
 
@@ -89,7 +89,7 @@ while true do
     if event == "monitor_touch" then
     	local side, x, y = p1, p2, p3
 
-    	for button in pairs(buttons) do
+    	for i, button in pairs(buttons) do
     		if x > button.x and x < button.x + button.w and y == button.y then
     			handleButtonClick(button.id)
     		end
