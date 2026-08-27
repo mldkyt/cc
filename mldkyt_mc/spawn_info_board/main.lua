@@ -42,16 +42,18 @@ end
 function addButton(label, id)
 	monitor.write("[" .. label .. "]")
 	local x, y = monitor.getCursorPos()
+	monitor.setCursorPos(1, y + 1)
+
 	table.insert(buttons, {
 		x = x,
 		y = y,
 		w = string.len(label) + 2,
 	    id = id
 	})
-	monitor.setCursorPos(1, y + 1)
 end
 
 function handleButtonClick(id)
+	print("Handling button event", id)
 	if id == "graves" then
 		page = "graves"
 	end
@@ -92,7 +94,7 @@ while true do
     	print("Buttons", #buttons)
     	for i, button in pairs(buttons) do
     		print("button", button.x, button.y, button.w, button.id)
-    		if x > button.x and x < button.x + button.w and y == button.y then
+    		if x > button.x - button.w and x < button.x and y == button.y then
     			handleButtonClick(button.id)
     		end
     	end
