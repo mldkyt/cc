@@ -17,11 +17,12 @@ function downloadFile(f, l)
     -- Get string
     local startupUpdate, errorMessage = http.get(l)
     if startupUpdate == nil then
-        printError("Error while trying to download file " .. errorMessage)
+        printError(f .. ".lua: Error while trying to download file " .. errorMessage)
+        return
     end
     local status, message = startupUpdate.getResponseCode()
     if status ~= 200 then
-        printError("Server responded with message " .. message)
+        printError(f .. ".lua: Server responded with message " .. message)
         return
     end
 
@@ -39,10 +40,9 @@ function downloadFile(f, l)
     print(f .. ": done updating.")
 end
 
-downloadFile("startup", "https://mldkyt.nekoweb.org/cc/velkysmp/tips/startup.lua")
+downloadFile("startup", "https://git.mldkyt.com/mldkyt/cc/raw/branch/main/mldkyt_mc/spawn_info_board/startup.lua")
 downloadFile("json", "https://raw.githubusercontent.com/rxi/json.lua/master/json.lua")
-downloadFile("main", "https://mldkyt.nekoweb.org/cc/velkysmp/tips/main.lua")
-downloadFile("utils", "https://mldkyt.nekoweb.org/cc/velkysmp/utils.lua")
+downloadFile("main", "https://git.mldkyt.com/mldkyt/cc/raw/branch/main/mldkyt_mc/spawn_info_board/main.lua")
 
 shell.run("main.lua")
 
