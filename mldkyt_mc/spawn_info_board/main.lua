@@ -6,10 +6,10 @@ function renderClock()
 	local hours = math.floor(os.time())
 	local minutes = math.floor((os.time() % 1) * 60)
 
-	if string.len(hours) == 1:
+	if string.len(hours) == 1 then
 		hours = "0" .. hours
 	end
-	if string.len(minutes) == 1:
+	if string.len(minutes) == 1 then
 		minutes = "0" .. minutes
 	end
 
