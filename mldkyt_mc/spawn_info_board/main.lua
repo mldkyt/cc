@@ -23,7 +23,7 @@ function prettyPrint(str)
 	i = 0
 
 	for word in str:gmatch("%S+") do
-		i = i + string.len(word)
+		i = i + string.len(word) + 1
 
 		if i > w then
 			local x, y = monitor.getCursorPos()
