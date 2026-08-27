@@ -26,7 +26,7 @@ function prettyPrint(str)
 	for word in str:gmatch("%S+") do
 		i = i + string.len(word) + 1
 
-		if i > w then
+		if i > w - 2 then
 			local x, y = monitor.getCursorPos()
 			monitor.setCursorPos(1, y + 1)
 			i = 0
