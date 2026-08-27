@@ -19,6 +19,21 @@ function renderClock()
 	monitor.write(hours .. ":" .. minutes)
 end
 
+function prettyPrint(str)
+	i = 0
+
+	for word in str:gmatch("%S+") do
+		i = i + string.len(word)
+
+		if i > w then
+			local x, y = monitor.getCursorPos()
+			monitor.setCursorPos(1, y + 1)
+		end
+
+		monitor.write(word .. " ")
+	end
+end
+
 function draw()
 	monitor.clear()
 
