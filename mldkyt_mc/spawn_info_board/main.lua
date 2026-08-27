@@ -18,7 +18,7 @@ function renderClock()
 end
 
 monitor.setCursorPos(1, 1)
-monitor.write("Hello world! This is a test if this works or not. ")
+monitor.write("Welcome to mldkyt's Minecraft Server!") 
 
 renderClock()
 
