@@ -2,6 +2,8 @@
 local monitor = peripheral.wrap("back")
 local w, h = monitor.getSize()
 
+local screen = "main"
+
 function renderClock()
 	local hours = math.floor(os.time())
 	local minutes = math.floor((os.time() % 1) * 60)
@@ -17,9 +19,16 @@ function renderClock()
 	monitor.write(hours .. ":" .. minutes)
 end
 
-monitor.setCursorPos(1, 1)
-monitor.write("Welcome to mldkyt's Minecraft Server!") 
+function draw()
+	monitor.clear()
 
+	if screen == "main" then
+		monitor.setCursorPos(1, 1)
+		monitor.write("Welcome to mldkyt's Minecraft Server!") 
+	end
+end
+
+draw()
 renderClock()
 
 while true do
@@ -30,6 +39,10 @@ while true do
     	local side, x, y = p1, p2, p3
 
     	-- TODO
+    end
+
+    if event == "tick" then
+    	renderClock()
     end
 
 end
