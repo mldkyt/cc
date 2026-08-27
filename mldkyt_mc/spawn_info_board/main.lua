@@ -42,14 +42,13 @@ end
 function addButton(label, id)
 	monitor.write("[" .. label .. "]")
 	local x, y = monitor.getCursorPos()
-	monitor.setCursorPos(1, y + 1)
-
 	table.insert(buttons, {
 		x = x,
 		y = y,
 		w = string.len(label) + 2,
 	    id = id
 	})
+	monitor.setCursorPos(1, y + 1)
 end
 
 function handleButtonClick(id)
