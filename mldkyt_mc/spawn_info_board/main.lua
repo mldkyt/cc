@@ -5,8 +5,6 @@ buttons = {}
 
 screen = "main"
 
-monitor.setTextScale(2)
-
 function renderClock()
 	local hours = math.floor(os.time())
 	local minutes = math.floor((os.time() % 1) * 60)
@@ -66,7 +64,7 @@ end
 function draw()
 	buttons = {}
 	monitor.clear()
-	monitor.setCursorPos(1, 2)
+	monitor.setCursorPos(1, 1)
 
 	if screen == "main" then
 		prettyPrint("Welcome to mldkyt's Minecraft Server!") 
