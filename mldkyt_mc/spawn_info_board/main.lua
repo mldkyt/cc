@@ -1,5 +1,5 @@
 
-local monitor = peripheral.wrap("back")
+local monitor = peripheral.wrap("top")
 local w, h = monitor.getSize()
 
 local screen = "main"
