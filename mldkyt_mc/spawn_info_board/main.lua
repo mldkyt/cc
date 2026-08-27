@@ -62,6 +62,7 @@ function handleButtonClick(id)
 end
 
 function draw()
+	buttons = {}
 	monitor.clear()
 	monitor.setCursorPos(1, 1)
 
