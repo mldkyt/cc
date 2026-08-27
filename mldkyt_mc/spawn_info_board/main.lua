@@ -1,8 +1,9 @@
 
-local monitor = peripheral.wrap("top")
-local w, h = monitor.getSize()
+monitor = peripheral.wrap("top")
+w, h = monitor.getSize()
+buttons = {}
 
-local screen = "main"
+screen = "main"
 
 function renderClock()
 	local hours = math.floor(os.time())
@@ -38,6 +39,19 @@ function prettyPrint(str)
 	monitor.setCursorPos(1, y + 2)
 end
 
+function addButton(label, id)
+	monitor.write(label)
+	local x, y = monitor.getCursorPos()
+	monitor.setCursorPos(1, y + 2)
+
+	table.insert(buttons, {
+		["x"] = x,
+		["y"] = y,
+		["w"] = string.len(label),
+		["id"] = id
+	})
+end
+
 function draw()
 	monitor.clear()
 
@@ -45,6 +59,7 @@ function draw()
 		monitor.setCursorPos(1, 1)
 		prettyPrint("Welcome to mldkyt's Minecraft Server!") 
 		prettyPrint("This is a \"semi\" \"vanilla\" Minecraft server. This means that some mods are allowed, and the admins may give out items sometimes.")
+		prettyPrint("There are a few mods, like a graves mod, which will protect your items when you die. Players can also set homes, warp, tpa and more! We have a claims plugin, you can claim stuff using a golden shovel, and you can use /flan to adjust settings.")
 	end
 end
 
