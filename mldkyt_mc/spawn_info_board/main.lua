@@ -53,12 +53,11 @@ function addButton(label, id)
 end
 
 function handleButtonClick(id)
-	print("Handling button event", id)
 	if id == "graves" then
-		page = "graves"
+		screen = "graves"
 	end
 	if id == "back" then
-		page = "main"
+		screen = "main"
 	end
 end
 
@@ -90,10 +89,7 @@ while true do
     if event == "monitor_touch" then
     	local side, x, y = p1, p2, p3
 
-    	print("monitor_touch", x, y)
-    	print("Buttons", #buttons)
     	for i, button in pairs(buttons) do
-    		print("button", button.x, button.y, button.w, button.id)
     		if x > button.x - button.w and x < button.x and y == button.y then
     			handleButtonClick(button.id)
     		end
