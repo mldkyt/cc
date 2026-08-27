@@ -33,6 +33,9 @@ function prettyPrint(str)
 
 		monitor.write(word .. " ")
 	end
+
+	local x, y = monitor.getCursorPos()
+	monitor.setCursorPos(1, y + 2)
 end
 
 function draw()
