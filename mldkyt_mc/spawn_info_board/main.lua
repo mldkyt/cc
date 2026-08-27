@@ -42,7 +42,7 @@ end
 function addButton(label, id)
 	monitor.write("[" .. label .. "]")
 	local x, y = monitor.getCursorPos()
-	monitor.setCursorPos(1, y + 2)
+	monitor.setCursorPos(1, y + 1)
 
 	table.insert(buttons, {
 		["x"] = x,
@@ -56,6 +56,9 @@ function handleButtonClick(id)
 	if id == "graves" then
 		page = "graves"
 	end
+	if id == "back" then
+		page = "main"
+	end
 end
 
 function draw()
@@ -65,8 +68,10 @@ function draw()
 	if screen == "main" then
 		prettyPrint("Welcome to mldkyt's Minecraft Server!") 
 		prettyPrint("This is a \"semi\" \"vanilla\" Minecraft server. This means that some mods are allowed, and the admins may give out items sometimes.")
+		addButton("Graves", "graves")
 	end
 	if screen == "graves" then
+		addButton("Back", "back")
 		prettyPrint("The graves mod is very self explanatory. When you die, a grave will be placed on your location. Graves are protected from any damage, and can be picked up either by breaking the grave, or shift-right clicking it.")
 		prettyPrint("Players also get a grave compass on death to quickly find their death location. All players have 15 minutes to locate and pick up their items before they drop, and then an additional 3 minutes if you consider vanilla item despawns.")
 	end
