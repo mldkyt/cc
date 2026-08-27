@@ -44,8 +44,6 @@ function draw()
 	if screen == "main" then
 		monitor.setCursorPos(1, 1)
 		prettyPrint("Welcome to mldkyt's Minecraft Server!") 
-
-		monitor.setCursorPos(1, 3)
 		prettyPrint("This is a \"semi\" \"vanilla\" Minecraft server. This means that some mods are allowed, and the admins may give out items sometimes.")
 	end
 end
