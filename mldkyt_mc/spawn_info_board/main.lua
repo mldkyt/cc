@@ -62,6 +62,9 @@ function handleButtonClick(id)
 	if id == "gp" then
 		screen = "grief"
 	end
+	if id == "skin" then
+		screen = "skin"
+	end
 end
 
 function draw()
@@ -76,6 +79,7 @@ function draw()
 		prettyPrint("")
 		addButton("Graves", "graves")
 		addButton("Grief Prevention", "gp")
+		addButton("How to change your skin", "skin")
 	end
 	if screen == "graves" then
 		addButton("Back", "back")
@@ -92,6 +96,15 @@ function draw()
 		prettyPrint("You can claim land using a golden shovel, just like previously. All players start with 2000 claimable blocks, and more get added as you play. Claim as much land as you want but don't abuse this.")
 		prettyPrint("")
 		prettyPrint("You can open the menu using /flan menu. Here you can make roles, add players into roles, set up global permissions etc. allowing for any shape or form of claim to be made.")
+		prettyPrint("")
+		prettyPrint("You can delete a claim using /flan delete. This will return all the claimable blocks back.")
+	end
+	if screen == "skin" then
+		addButton("Back", "back")
+		monitor.setCursorPos(1, 3)
+		prettyPrint("We use SkinsRestorer to make skins work on a cracked server. If you have a premium account your normal skin will be used.")
+		prettyPrint("")
+		prettyPrint("For cracked accounts, find a skin and find a player who is using that screen, once done you can set the skin by typing /skin set <playername>. This will make you use the skin of the player of your choosing")
 	end
 end
 
