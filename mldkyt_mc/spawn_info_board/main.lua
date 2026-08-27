@@ -26,7 +26,7 @@ while true do
     os.queueEvent("tick")
     local event, p1, p2, p3, p4, p5 = os.pullEvent()
 
-    if event == "monitor_touch":
+    if event == "monitor_touch" then
     	local side, x, y = p1, p2, p3
 
     	-- TODO
