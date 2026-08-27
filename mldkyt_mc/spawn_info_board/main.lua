@@ -28,6 +28,7 @@ function prettyPrint(str)
 		if i > w then
 			local x, y = monitor.getCursorPos()
 			monitor.setCursorPos(1, y + 1)
+			i = 0
 		end
 
 		monitor.write(word .. " ")
