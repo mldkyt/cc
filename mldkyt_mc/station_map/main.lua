@@ -65,6 +65,38 @@ function draw()
 
 	monitor.setCursorPos(45, 26)
 	monitor.write("TRADING CENTER")
+
+	-- Next intersection
+	monitor.setCursorPos(68, 23)
+	monitor.write("|")
+	monitor.setCursorPos(68, 22)
+	monitor.write("+")
+
+	-- Minty's base
+	monitor.setCursorPos(36, 22)
+	monitor.write("+")
+	for i = 37, 67 do
+		monitor.write("=")
+	end
+	monitor.setCursorPos(30, 24)
+	monitor.write("MINTY'S BASE")
+
+	-- Next intersection
+	monitor.setCursorPos(68, 21)
+	monitor.write("|")
+	monitor.setCursorPos(68, 20)
+	monitor.write("|")
+	monitor.setCursorPos(68, 19)
+	monitor.write("+")
+
+	-- sel's base
+	monitor.setCursorPos(37, 19)
+	monitor.write("+")
+	for i = 38, 67 do
+		monitor.write("=")
+	end
+	monitor.setCursorPos(32, 21)
+	monitor.write("SEL'S BASE")
 end
 
 draw()
