@@ -97,6 +97,24 @@ function draw()
 	end
 	monitor.setCursorPos(32, 21)
 	monitor.write("SEL'S BASE")
+
+	-- Next intersection
+	for i = 4, 18 do
+		monitor.setCursorPos(68, i)
+		monitor.write("|")
+	end
+	monitor.setCursorPos(68, 3)
+	monitor.write("+")
+
+	-- yuki's base
+	monitor.setCursorPos(61, 3)
+	monitor.write("+")
+	for i = 62, 67 do
+		monitor.write("=")
+	end
+	
+	monitor.setCursorPos(56, 5)
+	monitor.write("YUKI'S BASE")
 end
 
 draw()
