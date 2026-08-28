@@ -12,7 +12,7 @@ function draw()
 	end
 
 	for i = 1, h do
-		monitor.setCursorPos(w - 1, i)
+		monitor.setCursorPos(w, i)
 		monitor.write("h")
 	end
 
@@ -22,4 +22,10 @@ draw()
 
 while true do
     local event, p1, p2, p3, p4, p5 = os.pullEvent()
+
+    if event == "monitor_touch" then
+    	local side, x, y = p1, p2, p3
+
+    	print("touch at", x, y)
+    end
 end
