@@ -6,16 +6,25 @@ print("size", w, h)
 monitor.setTextScale(0.5)
 
 function draw()
-	for i = 1, w do
-		monitor.setCursorPos(i, 1)
-		monitor.write("w")
-	end
+	monitor.clear()
 
-	for i = 1, h do
-		monitor.setCursorPos(w, i)
-		monitor.write("h")
-	end
+	-- Spawn
 
+	monitor.setCursorPos(68, 31)
+	monitor.write("S")
+
+	monitor.setCursorPos(68, 32)
+	monitor.write("^")
+
+	monitor.setCursorPos(63, 33)
+	monitor.write("YOU ARE HERE")
+
+	-- Above spawn, intersection
+	monitor.setCursorPos(68, 30)
+	monitor.write("|")
+
+	monitor.setCursorPos(68, 29)
+	monitor.write("+")
 end
 
 draw()
