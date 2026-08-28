@@ -41,7 +41,7 @@ function draw()
 		monitor.write("=")
 	end
 	monitor.write("+")
-	monitor.setCursorPos(62, 31)
+	monitor.setCursorPos(76, 31)
 	monitor.write("MLDKYT'S BASE")
 end
 
