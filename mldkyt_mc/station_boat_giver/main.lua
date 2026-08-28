@@ -5,7 +5,7 @@ local monitor = peripheral.wrap("back")
 
 function addButton(label, id)
 	monitor.write("[" .. label .. "]")
-	local x, y = mon1.getCursorPos()
+	local x, y = monitor.getCursorPos()
 
 	table.insert(buttons, {
 		x = x,
