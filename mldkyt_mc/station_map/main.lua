@@ -58,7 +58,8 @@ function draw()
 	monitor.write("LINA'S BASE")
 
 	monitor.setCursorPos(52, 24)
-	for i = 52, 67 do
+	monitor.write("+")
+	for i = 53, 67 do
 		monitor.write("=")
 	end
 
