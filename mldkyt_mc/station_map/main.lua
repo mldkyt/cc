@@ -45,8 +45,8 @@ function draw()
 	monitor.write("MLDKYT'S BASE")
 
 	-- Next intersection
-	for i = 25, 30 do
-		monitor.setCursorPos(69, i)
+	for i = 25, 29 do
+		monitor.setCursorPos(68, i)
 		monitor.write("|")
 	end
 
