@@ -32,6 +32,8 @@ function draw()
 	for i = 54, 67 do
 		monitor.write("=")
 	end
+	monitor.setCursorPos(49, 31)
+	monitor.write("IRON FARM")
 
 	-- mldkyt's base
 	monitor.setCursorPos(69, 29)
@@ -39,6 +41,8 @@ function draw()
 		monitor.write("=")
 	end
 	monitor.write("+")
+	monitor.setCursorPos(62, 31)
+	monitor.write("MLDKYT'S BASE")
 end
 
 draw()
