@@ -29,13 +29,13 @@ function draw()
 	-- Iron Farm
 	monitor.setCursorPos(53, 29)
 	monitor.write("+")
-	for i = 54, 13 do
+	for i = 54, 67 do
 		monitor.write("=")
 	end
 
 	-- mldkyt's base
 	monitor.setCursorPos(69, 29)
-	for i = 69, 12 do
+	for i = 69, 81 do
 		monitor.write("=")
 	end
 	monitor.write("+")
