@@ -43,6 +43,27 @@ function draw()
 	monitor.write("+")
 	monitor.setCursorPos(76, 31)
 	monitor.write("MLDKYT'S BASE")
+
+	-- Next intersection
+	for i = 25, 30 do
+		monitor.setCursorPos(69, i)
+		monitor.write("|")
+	end
+
+	monitor.setCursorPos(68, 24)
+	monitor.write("+")
+
+	monitor.write("=====+")
+	monitor.setCursorPos(69, 26)
+	monitor.write("LINA'S BASE")
+
+	monitor.setCursorPos(52, 24)
+	for i = 52, 67 do
+		monitor.write("=")
+	end
+
+	monitor.setCursorPos(45, 26)
+	monitor.write("TRADING CENTER")
 end
 
 draw()
